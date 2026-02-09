@@ -8,7 +8,7 @@ const Footer4 = () => {
           <div className="col-lg-4 col-md-6 col-12">
             <div className="single-footer-items footer-logo-area">
               <div className="footer-logo">
-                <a href=""><img src="/assets/img/logo/header4-logo.png" alt="" /></a>
+                <a href=""><img src="/assets/img/logo/orbitlogo.png" alt="" /></a>
               </div>
               <div className="space20"></div>
               <div className="heading4">
