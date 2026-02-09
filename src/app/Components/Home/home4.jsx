@@ -18,12 +18,12 @@ const Home4 = () => {
                 btnoneurl="/contact"
                 btntwo="Start Now"
                 btntwourl="/service"
-                shape1="/assets/img/shapes/hero4-image-shape.png"
+                shape1="/assets/img/hero/hero4-image-shape.png"
             ></HeroBanner4>
             <About4
-                image1="/assets/img/about/about4-img1.png"
-                image2="/assets/img/about/about4-img2.png"
-                image3="/assets/img/about/about4-img3.png"
+                image1="/assets/img/about/ab2.png"
+                image2="/assets/img/about/ab1.png"
+                image3="/assets/img/about/ab3.png"
                 // shape1="/assets/img/shapes/about3-shape1.png"
                 shape1="/assets/img/icons/orbitCircle.png"
                 subTitle="About Us 👋"
