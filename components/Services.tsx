@@ -18,41 +18,42 @@ export default function Services({ content }: { content: any }) {
     return (
         <section id="services" className="section bg-[var(--bg-deep)]">
             <div className="container relative z-10">
-                <div className="text-center mb-16">
-                    <span className="hero-tag">{servicesContent.tag}</span>
+                <div className="text-center mb-20">
+                    <span className="inline-block px-4 py-1 rounded-full border border-[var(--accent-primary)] text-[var(--accent-primary)] text-[10px] font-black mb-6 bg-[var(--accent-primary)]/5 uppercase tracking-[0.2em]">
+                        {servicesContent.tag}
+                    </span>
                     <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="text-3xl md:text-5xl font-bold mt-4"
+                        viewport={{ once: true }}
+                        className="text-5xl md:text-6xl font-extrabold mb-6"
                     >
-                        Engineering The <span className="text-[var(--accent-cyan)]">Future</span>
+                        Engineering The <span className="text-[var(--accent-primary)]">Future</span>
                     </motion.h2>
-                    <p className=" mx-auto mt-6 text-[var(--text-secondary)]" style={{ marginBottom: '2rem' }}>
+                    <p className="max-w-2xl mx-auto text-[var(--text-secondary)] text-xl font-medium leading-relaxed">
                         {servicesContent.description}
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" style={{ marginBottom: '2rem' }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {servicesContent.list && servicesContent.list.map((service: any, index: number) => {
-                        // Determine Icon. In content.ts we have iconName.
-                        // For now using the index or simple mapping if we want to restore Lucide icons dynamically.
-                        // But for simplicity/speed let's just use the hardcoded ones if mappings fail, 
-                        // or rely on the `iconName` from content.ts
                         const IconComponent = IconMap[service.iconName] || Globe;
 
                         return (
                             <motion.div
                                 key={index}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="glass-card p-8 group hover:bg-white/[0.03] transition-all duration-300"
+                                className="bg-white border border-gray-100 p-14 rounded-[3.5rem] group hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 relative overflow-hidden flex flex-col justify-between items-center text-center"
                             >
-                                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 duration-300" style={{ backgroundColor: service.bgColor }}>
-                                    <IconComponent className="w-7 h-7" style={{ color: service.iconColor }} />
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--accent-primary)]/5 rounded-bl-full -mr-16 -mt-16 group-hover:bg-[var(--accent-primary)]/10 transition-all duration-500"></div>
+                                <div className="w-20 h-20 rounded-3xl flex items-center justify-center mb-10 bg-gray-50 text-[var(--accent-primary)] group-hover:bg-[var(--accent-primary)] group-hover:text-white transition-all duration-500 relative z-10 shadow-sm mx-auto">
+                                    <IconComponent className="w-10 h-10" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                                <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">
+                                <h3 className="text-2xl font-extrabold mb-6 relative z-10 tracking-tight">{service.title}</h3>
+                                <p className="text-[var(--text-secondary)] leading-relaxed relative z-10 font-medium opacity-80 mb-6">
                                     {service.description}
                                 </p>
                             </motion.div>
@@ -61,8 +62,8 @@ export default function Services({ content }: { content: any }) {
                 </div>
 
                 <div className="text-center mt-12">
-                    <Link href="/services" className="inline-flex items-center gap-2 text-[var(--accent-cyan)] hover:opacity-80 transition-opacity uppercase tracking-widest text-sm font-bold">
-                        {servicesContent.exploreLabel} <Sparkles className="w-4 h-4" />
+                    <Link href="/services" className="inline-flex items-center gap-2 text-[var(--accent-primary)] hover:opacity-80 transition-opacity font-bold uppercase tracking-widest text-sm">
+                        {servicesContent.exploreLabel} <Sparkles className="w-4 h-4 ml-1" />
                     </Link>
                 </div>
             </div>

@@ -5,63 +5,48 @@
 @source "../components/**/*.{js,ts,jsx,tsx,mdx}";
 
 @theme {
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'Outfit', sans-serif;
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Outfit", sans-serif;
+
+  --color-accent-primary: #10b981;
+  --color-accent-secondary: #0f172a;
 }
 
 :root {
-  /* Default (Dark) Color Palette */
-  --bg-void: #050508;
-  --bg-deep: #0a0a0f;
-  --bg-surface: #14141f;
-
-  --accent-cyan: #00f3ff;
-  --accent-purple: #bc13fe;
-  --accent-pink: #ff0055;
-
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0b0;
-
-  /* Effects */
-  --glow-cyan: 0 0 20px rgba(0, 243, 255, 0.5);
-  --glow-purple: 0 0 20px rgba(188, 19, 254, 0.5);
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-blur: blur(10px);
-  --orb-border: rgba(255, 255, 255, 0.05);
-
-  /* Spacing */
-  --container-padding: 2rem;
-  --section-gap: 8rem;
-
-  /* Typography */
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'Outfit', sans-serif;
-}
-
-[data-theme='light'] {
-  /* Light Mode Overrides */
-  --bg-void: #f8fafc;
-  --bg-deep: #ffffff;
+  /* Rextfy Bright White Theme - Simplified Palette */
+  --bg-void: #ffffff;
+  --bg-deep: #f8fafc;
   --bg-surface: #f1f5f9;
 
-  --accent-cyan: #06b6d4;
-  /* Darker Cyan for light bg */
-  --accent-purple: #9333ea;
-  /* Darker Purple for light bg */
-  --accent-pink: #e11d48;
+  --accent-primary: #10b981;
+  /* Emerald Green */
+  --accent-secondary: #0f172a;
+  /* Deep Navy/Black */
 
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
+  --text-primary: #111111;
+  --text-secondary: #4b5563;
+
+  /* Legacy variable mappings */
+  --accent-cyan: var(--accent-primary);
+  --accent-purple: var(--accent-secondary);
 
   /* Effects */
-  --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.2);
-  --glow-purple: 0 0 20px rgba(147, 51, 234, 0.2);
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(0, 0, 0, 0.1);
-  --orb-border: rgba(0, 0, 0, 0.1);
+  --glow-primary: 0 10px 30px rgba(16, 185, 129, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --glass-blur: blur(16px);
+  --orb-border: rgba(0, 0, 0, 0.03);
+
+  /* Spacing */
+  --container-padding: 2.5rem;
+  --section-gap: 12rem;
 }
 
+[data-theme='dark'] {
+  /* Ensure even in "dark" theme, we stay light if requested, or at least keep text primary visible */
+  --bg-void: #ffffff;
+  --text-primary: #111111;
+}
 
 * {
   margin: 0;
@@ -75,7 +60,6 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
-  /* Critical for preventing horizontal scroll */
   position: relative;
   -webkit-font-smoothing: antialiased;
   width: 100%;
@@ -83,7 +67,7 @@ body {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -91,8 +75,9 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
-  border-radius: 4px;
+  background: var(--accent-primary);
+  border-radius: 10px;
+  border: 3px solid var(--bg-void);
 }
 
 /* Typography Utility */
@@ -104,22 +89,21 @@ h5,
 h6 {
   font-family: var(--font-heading);
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 700;
+  font-size: clamp(3.5rem, 10vw, 7.5rem);
+  font-weight: 800;
 }
 
 h2 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  background: linear-gradient(90deg, #fff, var(--text-secondary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 3rem;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: 3.5rem;
   text-align: center;
+  font-weight: 800;
 }
 
 a {
@@ -161,16 +145,28 @@ ul {
 }
 
 .btn-primary {
-  background: rgba(0, 243, 255, 0.1);
-  color: var(--accent-cyan);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
 }
 
 .btn-primary:hover {
-  background: var(--accent-cyan);
-  color: var(--bg-void);
-  box-shadow: 0 0 30px var(--accent-cyan);
+  background: #059669;
+  /* Slightly darker emerald */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.23);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--glass-border);
+}
+
+.btn-ghost:hover {
+  background: var(--bg-surface);
+  border-color: var(--text-secondary);
 }
 
 /* Social Links */
@@ -182,8 +178,25 @@ ul {
 }
 
 .social-link:hover {
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
   transform: translateY(-3px);
+}
+
+/* Rextfy Specific Utilities */
+.hero-image-mask {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.text-accent {
+  color: var(--accent-primary);
+}
+
+.bg-accent {
+  background-color: var(--accent-primary);
 }
 
 /* Hero Section */

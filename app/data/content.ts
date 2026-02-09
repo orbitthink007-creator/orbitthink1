@@ -36,29 +36,29 @@ export const content = {
             {
                 title: 'Immersive Gaming',
                 description: 'Unity 2D/3D & VR experiences. Multiplayer servers (Nakama/Photon) for global scalability.',
-                iconColor: 'var(--accent-cyan)',
-                bgColor: 'rgba(0, 243, 255, 0.2)',
+                iconColor: 'var(--accent-primary)',
+                bgColor: 'var(--bg-deep)',
                 iconName: 'gamepad' // Mapping name for Lucide/Custom icon
             },
             {
                 title: 'Mobile Innovation',
                 description: 'Cross-platform Flutter apps with native performance. Geo-fencing, Mapping, and complex integrations.',
-                iconColor: 'var(--accent-purple)',
-                bgColor: 'rgba(188, 19, 254, 0.2)',
+                iconColor: 'var(--accent-primary)',
+                bgColor: 'var(--bg-deep)',
                 iconName: 'smartphone'
             },
             {
                 title: 'Web Solutions',
                 description: 'Full-stack web architectures using Next.js & React. From high-traffic E-commerce to complex EHR systems.',
-                iconColor: 'var(--accent-pink)',
-                bgColor: 'rgba(255, 0, 85, 0.2)',
+                iconColor: 'var(--accent-primary)',
+                bgColor: 'var(--bg-deep)',
                 iconName: 'globe'
             },
             {
                 title: 'Enterprise AI',
                 description: 'Custom LLMs, RAG Agents, and Computer Vision for real-time surveillance. Cloud MLOps on Azure/AWS.',
-                iconColor: '#3b82f6',
-                bgColor: 'rgba(59, 130, 246, 0.2)',
+                iconColor: 'var(--accent-primary)',
+                bgColor: 'var(--bg-deep)',
                 iconName: 'bot'
             }
         ]
@@ -72,10 +72,10 @@ export const content = {
         projects: [
             {
                 tag: 'VR/Game',
-                tagColor: 'var(--accent-cyan)',
+                tagColor: 'var(--accent-primary)',
                 title: 'Tower Defence VR',
                 description: 'Immersive Oculus VR experience aimed at revolutionizing classic tower defence.',
-                gradient: 'linear-gradient(45deg, #1a1a2e, #16213e)',
+                gradient: 'linear-gradient(45deg, var(--bg-void), var(--bg-deep))',
                 icon: '🎮',
                 category: "Immersive Gaming",
                 tech: ["Unity 3D", "Oculus SDK", "C#", "Photon"],
@@ -84,39 +84,39 @@ export const content = {
             },
             {
                 tag: 'Mobile',
-                tagStyle: { borderColor: 'var(--accent-purple)', color: 'var(--accent-purple)', marginBottom: '1rem' },
+                tagStyle: { borderColor: 'var(--accent-primary)', color: 'var(--accent-primary)', marginBottom: '1rem' },
                 title: 'IGU: Real-World Tag',
                 description: 'Geo-location based multiplayer mobile game bridging physical and digital worlds.',
-                gradient: 'linear-gradient(45deg, #0f0c29, #302b63)',
+                gradient: 'linear-gradient(45deg, var(--bg-void), var(--bg-deep))',
                 icon: '📱',
                 category: "Mobile Innovation",
                 tech: ["Flutter", "Google Maps API", "Firebase"],
                 lead: "Owais Uddin Ahmed",
-                btnStyle: { color: 'var(--accent-purple)' }
+                btnStyle: { color: 'var(--accent-primary)' }
             },
             {
                 tag: 'Web & Health',
-                tagStyle: { borderColor: 'var(--accent-pink)', color: 'var(--accent-pink)', marginBottom: '1rem' },
+                tagStyle: { borderColor: 'var(--accent-primary)', color: 'var(--accent-primary)', marginBottom: '1rem' },
                 title: 'EHR & Patient Monitoring',
                 description: 'Secure, HIPAA-compliant platform for managing patient data and clinical workflows.',
-                gradient: 'linear-gradient(45deg, #200122, #6f0000)',
+                gradient: 'linear-gradient(45deg, var(--bg-void), var(--bg-deep))',
                 icon: '🏥',
                 category: "Healthcare Platform",
                 tech: ["Next.js", "Redux Toolkit", "TypeScript", "HIPAA"],
                 lead: "Tulaib Ahmed Siddiqui",
-                btnStyle: { color: 'var(--accent-pink)' }
+                btnStyle: { color: 'var(--accent-primary)' }
             },
             {
                 tag: 'Enterprise AI',
-                tagStyle: { borderColor: '#3b82f6', color: '#3b82f6', marginBottom: '1rem' },
+                tagStyle: { borderColor: 'var(--accent-primary)', color: 'var(--accent-primary)', marginBottom: '1rem' },
                 title: 'VisionX Surveillance',
                 description: 'AI-driven computer vision system for real-time threat detection and analytics.',
-                gradient: 'linear-gradient(45deg, #0f172a, #1e293b)',
+                gradient: 'linear-gradient(45deg, var(--bg-void), var(--bg-deep))',
                 icon: '👁️',
                 category: "AI & Computer Vision",
                 tech: ["Python", "FastAPI", "OpenCV", "SQL"],
                 lead: "Syed Muhammad Mehmam",
-                btnStyle: { color: '#3b82f6' }
+                btnStyle: { color: 'var(--accent-primary)' }
             }
         ],
         // Additional projects for the full portfolio page
@@ -191,37 +191,37 @@ export const content = {
                 icon: '🎮',
                 role: 'Immersive & Gaming',
                 desc: 'Expert in crafting engaging 2D/3D games and VR experiences using Unity and real-time multiplayer systems.',
-                borderColor: 'var(--accent-cyan)',
-                roleColor: 'var(--accent-cyan)'
+                borderColor: 'var(--accent-primary)',
+                roleColor: 'var(--accent-primary)'
             },
             {
                 icon: '📱',
                 role: 'Mobile Innovation',
                 desc: 'Specialized in high-performance cross-platform applications with seamless native integrations.',
-                borderColor: 'var(--accent-purple)',
-                roleColor: 'var(--accent-purple)'
+                borderColor: 'var(--accent-primary)',
+                roleColor: 'var(--accent-primary)'
             },
             {
                 icon: '💻',
                 role: 'Web & Enterprise',
                 desc: 'Building scalable, secure platforms for healthcare, e-commerce, and enterprise-grade systems.',
-                borderColor: 'var(--accent-pink)',
-                roleColor: 'var(--accent-pink)'
+                borderColor: 'var(--accent-primary)',
+                roleColor: 'var(--accent-primary)'
             },
             {
                 icon: '🤖',
                 role: 'AI & Machine Learning',
                 desc: 'Designing cloud-native AI pipelines, computer vision systems, and intelligent automation solutions.',
-                borderColor: '#3b82f6',
-                roleColor: '#3b82f6'
+                borderColor: 'var(--accent-primary)',
+                roleColor: 'var(--accent-primary)'
             }
         ],
         cta: "Ready to Transform Your Ideas?",
         ctaText: "Let's discuss how we can help your business grow with innovative technology solutions.",
         stats: [
-            { value: "100+", label: "Projects Delivered", color: "var(--accent-cyan)" },
-            { value: "50+", label: "Happy Clients", color: "var(--accent-purple)" },
-            { value: "24/7", label: "Support Available", color: "var(--accent-pink)" }
+            { value: "100+", label: "Projects Delivered", color: "var(--accent-primary)" },
+            { value: "50+", label: "Happy Clients", color: "var(--accent-primary)" },
+            { value: "24/7", label: "Support Available", color: "var(--accent-primary)" }
         ]
     },
     servicesPage: {
@@ -240,7 +240,7 @@ export const content = {
                     "VR/AR & Oculus Development"
                 ],
                 icon: "🎮",
-                accentColor: "var(--accent-cyan)",
+                accentColor: "var(--accent-primary)",
                 image: "/images/game-dev.png" // Placeholder
             },
             {
@@ -252,7 +252,7 @@ export const content = {
                     "High-Performance UI/UX Implementation"
                 ],
                 icon: "📱",
-                accentColor: "var(--accent-purple)",
+                accentColor: "var(--accent-primary)",
                 image: "/images/mobile-dev.png"
             },
             {
@@ -264,7 +264,7 @@ export const content = {
                     "Enterprise-Grade Frontend Architecture"
                 ],
                 icon: "💻",
-                accentColor: "var(--accent-pink)",
+                accentColor: "var(--accent-primary)",
                 image: "/images/web-dev.png"
             },
             {
@@ -276,7 +276,7 @@ export const content = {
                     "Cloud MLOps (Azure/AWS)"
                 ],
                 icon: "🤖",
-                accentColor: "#3b82f6",
+                accentColor: "var(--accent-primary)",
                 image: "/images/ai-dev.png"
             }
         ]
@@ -288,22 +288,22 @@ export const content = {
                 number: "01",
                 title: "Ignition",
                 description: "We analyze your data landscape and identify high-impact AI opportunities.",
-                color: "var(--accent-cyan)",
-                shadow: "rgba(0, 243, 255, 0.3)"
+                color: "var(--accent-primary)",
+                shadow: "rgba(16, 185, 129, 0.3)"
             },
             {
                 number: "02",
                 title: "Orbit",
                 description: "Our engineers build and train custom models tailored to your specific parameters.",
-                color: "var(--accent-purple)",
-                shadow: "rgba(188, 19, 254, 0.3)"
+                color: "var(--accent-primary)",
+                shadow: "rgba(16, 185, 129, 0.3)"
             },
             {
                 number: "03",
                 title: "Velocity",
                 description: "Deploy, monitor, and scale. We ensure your AI solution reaches escape velocity.",
-                color: "var(--accent-pink)",
-                shadow: "rgba(255, 0, 85, 0.3)"
+                color: "var(--accent-primary)",
+                shadow: "rgba(16, 185, 129, 0.3)"
             }
         ]
     },

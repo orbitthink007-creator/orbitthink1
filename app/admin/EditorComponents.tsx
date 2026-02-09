@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // --- Primitive Inputs ---
 
 const Label = ({ label }: { label: string }) => (
-    <label className="block text-xs uppercase tracking-wider text-[var(--accent-cyan)] mb-1 font-semibold">
+    <label className="block text-xs uppercase tracking-wider text-[var(--accent-primary)] mb-2 font-bold">
         {label.replace(/([A-Z])/g, ' $1').trim()}
     </label>
 );
@@ -19,7 +19,7 @@ export const TextInput = ({ label, value, onChange }: { label: string, value: st
                 type="text"
                 value={value || ''}
                 onChange={(e) => onChange(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded px-3 py-2 text-sm text-white focus:border-[var(--accent-purple)] focus:outline-none transition-colors"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] focus:bg-white focus:border-[var(--accent-primary)] focus:ring-4 focus:ring-[var(--accent-primary)]/10 outline-none transition-all"
             />
         </div>
     );
@@ -33,7 +33,7 @@ export const TextArea = ({ label, value, onChange }: { label: string, value: str
                 value={value || ''}
                 onChange={(e) => onChange(e.target.value)}
                 rows={4}
-                className="w-full bg-white/5 border border-white/10 rounded px-3 py-2 text-sm text-white focus:border-[var(--accent-purple)] focus:outline-none transition-colors resize-y"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] focus:bg-white focus:border-[var(--accent-primary)] focus:ring-4 focus:ring-[var(--accent-primary)]/10 outline-none transition-all resize-y"
             />
         </div>
     );
@@ -43,16 +43,16 @@ export const ColorInput = ({ label, value, onChange }: { label: string, value: s
     return (
         <div className="mb-4">
             <Label label={label} />
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-3 items-center">
                 <div
-                    className="w-8 h-8 rounded border border-white/20"
+                    className="w-10 h-10 rounded-xl border border-gray-200 shadow-inner"
                     style={{ background: value }}
                 />
                 <input
                     type="text"
                     value={value || ''}
                     onChange={(e) => onChange(e.target.value)}
-                    className="flex-1 bg-white/5 border border-white/10 rounded px-3 py-2 text-sm text-white focus:border-[var(--accent-purple)] focus:outline-none"
+                    className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] focus:bg-white focus:border-[var(--accent-primary)] focus:outline-none transition-all"
                 />
             </div>
         </div>
@@ -65,9 +65,7 @@ export const ArrayEditor = ({ label, value, onChange }: { label: string, value: 
     const [isExpanded, setIsExpanded] = useState(false);
 
     const addItem = () => {
-        // Infer schema from first item if exists, else empty object or string
         const template = value.length > 0 ? JSON.parse(JSON.stringify(value[0])) : "";
-        // Clean template values
         if (typeof template === 'object') {
             Object.keys(template).forEach(k => template[k] = "");
         }
@@ -86,10 +84,12 @@ export const ArrayEditor = ({ label, value, onChange }: { label: string, value: 
     };
 
     return (
-        <div className="mb-6 border border-white/10 rounded-lg p-4 bg-white/[0.02]">
-            <div className="flex justify-between items-center mb-2 cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
+        <div className="mb-6 border border-gray-100 rounded-2xl p-6 bg-gray-50/50">
+            <div className="flex justify-between items-center mb-4 cursor-pointer group" onClick={() => setIsExpanded(!isExpanded)}>
                 <Label label={`${label} (${value.length})`} />
-                <span className="text-[var(--accent-cyan)] text-lg">{isExpanded ? '−' : '+'}</span>
+                <span className="text-[var(--accent-primary)] bg-white w-8 h-8 rounded-full flex items-center justify-center border border-gray-100 shadow-sm group-hover:scale-110 transition-transform">
+                    {isExpanded ? '−' : '+'}
+                </span>
             </div>
 
             <AnimatePresence>
@@ -100,12 +100,12 @@ export const ArrayEditor = ({ label, value, onChange }: { label: string, value: 
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden"
                     >
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-6 mt-4">
                             {value.map((item, i) => (
-                                <div key={i} className="relative pl-4 border-l-2 border-[var(--accent-purple)]/30">
+                                <div key={i} className="relative pl-6 border-l-4 border-[var(--accent-primary)]/20 bg-white p-6 rounded-r-2xl shadow-sm">
                                     <button
                                         onClick={() => removeItem(i)}
-                                        className="absolute right-0 top-0 text-red-400 hover:text-red-300 text-xs px-2 py-1"
+                                        className="absolute right-4 top-4 text-red-500 hover:text-red-700 text-xs font-bold uppercase tracking-widest px-2 py-1"
                                     >
                                         Remove
                                     </button>
@@ -114,7 +114,7 @@ export const ArrayEditor = ({ label, value, onChange }: { label: string, value: 
                             ))}
                             <button
                                 onClick={addItem}
-                                className="w-full py-2 border border-dashed border-white/20 text-white/50 hover:text-white hover:border-white/50 rounded transition-colors text-sm"
+                                className="w-full py-4 border-2 border-dashed border-gray-200 text-gray-400 hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/30 hover:bg-[var(--accent-primary)]/5 rounded-2xl transition-all text-sm font-bold uppercase tracking-widest"
                             >
                                 + Add {label} Item
                             </button>

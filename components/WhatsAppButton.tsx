@@ -1,6 +1,6 @@
 "use client";
 
-export async function WhatsAppButton({ heroContent }: { heroContent: any }) {
+export function WhatsAppButton({ heroContent }: { heroContent: any }) {
     return (
         <a
             href={`https://wa.me/${heroContent.number ? heroContent.number : "+923394054520"}`}

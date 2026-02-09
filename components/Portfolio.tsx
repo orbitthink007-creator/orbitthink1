@@ -9,55 +9,50 @@ export default function Portfolio({ content }: { content: any }) {
     return (
         <section className="section">
             <div className="container">
-                <div className="text-center mb-16">
-                    <span className="hero-tag">{portfolioContent.tag}</span>
+                <div className="text-center mb-20">
+                    <span className="inline-block px-4 py-1 rounded-full border border-[var(--accent-primary)] text-[var(--accent-primary)] text-[10px] font-black mb-6 bg-[var(--accent-primary)]/5 uppercase tracking-[0.2em]">
+                        {portfolioContent.tag}
+                    </span>
                     <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="text-3xl md:text-5xl font-bold mt-4 mb-6"
+                        viewport={{ once: true }}
+                        className="text-5xl md:text-6xl font-extrabold mb-6"
                     >
-                        {portfolioContent.title}
+                        Our <span className="text-[var(--accent-primary)]">Mission</span> Logs
                     </motion.h2>
-                    <p className=" mx-auto text-[var(--text-secondary)]" style={{ marginBottom: '2rem' }}>
+                    <p className="max-w-2xl mx-auto text-[var(--text-secondary)] text-xl font-medium leading-relaxed">
                         {portfolioContent.subtitle}
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" style={{ marginBottom: '2rem' }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {portfolioContent.projects && portfolioContent.projects.map((project: any, index: number) => (
                         <motion.div
                             key={index}
-                            className="glass-card relative overflow-hidden group rounded-2xl p-6 hover:bg-white/[0.03] transition-all duration-300"
-                            initial={{ opacity: 0, y: 20 }}
+                            className="bg-white border border-gray-100 relative overflow-hidden group rounded-[3.5rem] p-14 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 flex flex-col items-center text-center"
+                            initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                         >
-                            <div className="flex justify-between items-start mb-4">
-                                <span className="text-3xl">{project.icon}</span>
-                                <span
-                                    className="text-xs font-bold px-2 py-1 rounded"
-                                    style={project.tagStyle || { color: project.tagColor, border: `1px solid ${project.tagColor}` }}
-                                >
+                            <div className="flex flex-col items-center gap-6 mb-10 w-full">
+                                <span className="text-6xl grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-110 mb-2">{project.icon}</span>
+                                <span className="text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest border border-[var(--accent-primary)] text-[var(--accent-primary)] bg-[var(--accent-primary)]/5">
                                     {project.tag}
                                 </span>
                             </div>
 
-                            <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                            <p className="text-sm text-[var(--text-secondary)] mb-6 line-clamp-3">
+                            <h3 className="text-2xl font-extrabold mb-6 tracking-tight">{project.title}</h3>
+                            <p className="text-[var(--text-secondary)] mb-10 line-clamp-3 leading-relaxed font-medium opacity-80">
                                 {project.description}
                             </p>
 
-                            <div className="mt-auto">
-                                <Link href="/portfolio" className="text-sm font-bold tracking-wider uppercase transition-colors hover:opacity-80 flex items-center gap-2"
-                                    style={project.btnStyle || { color: project.tagColor }}>
-                                    {portfolioContent.viewProjectLabel} <span>→</span>
+                            <div className="mt-auto pt-8 border-t border-gray-50 w-full flex justify-center">
+                                <Link href="/portfolio" className="text-[12px] font-black tracking-[0.2em] uppercase transition-all hover:gap-4 flex items-center gap-2 text-[var(--accent-primary)]">
+                                    {portfolioContent.viewProjectLabel} <span className="text-xl">→</span>
                                 </Link>
                             </div>
-
-                            <div
-                                className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none"
-                                style={{ background: project.gradient }}
-                            ></div>
                         </motion.div>
                     ))}
                 </div>

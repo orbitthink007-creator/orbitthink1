@@ -43,75 +43,67 @@ export default function ContactForm() {
 
     return (
         <motion.form
-            className="glass-card"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            className="bg-white border border-gray-100 p-10 md:p-16 rounded-[3.5rem] shadow-2xl shadow-emerald-500/5 relative overflow-hidden"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             onSubmit={onSubmit}
         >
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--accent-primary)]/5 rounded-bl-[4rem] -z-10"></div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div>
-                    <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Name</label>
+                    <label className="block text-[11px] font-black uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-4 opacity-60 px-2">Your Name</label>
                     <input type="text"
                         name="name"
+                        placeholder="John Doe"
                         required
-                        style={{ width: '100%', padding: '1rem', background: 'rgba(0,0,0,0.3)', border: '1px solid var(--glass-border)', borderRadius: '8px', color: '#fff', outline: 'none', transition: 'border-color 0.3s' }}
-                        onFocus={(e) => e.target.style.borderColor = 'var(--accent-cyan)'}
-                        onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
+                        className="w-full px-8 py-5 bg-gray-50 border border-transparent rounded-2xl text-[var(--text-primary)] focus:bg-white focus:border-[var(--accent-primary)] focus:ring-4 focus:ring-[var(--accent-primary)]/10 transition-all outline-none font-medium placeholder:text-gray-300"
                     />
                 </div>
                 <div>
-                    <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Company</label>
+                    <label className="block text-[11px] font-black uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-4 opacity-60 px-2">Company Name</label>
                     <input type="text"
                         name="company"
-                        style={{ width: '100%', padding: '1rem', background: 'rgba(0,0,0,0.3)', border: '1px solid var(--glass-border)', borderRadius: '8px', color: '#fff', outline: 'none', transition: 'border-color 0.3s' }}
-                        onFocus={(e) => e.target.style.borderColor = 'var(--accent-cyan)'}
-                        onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
+                        placeholder="OrbitThink"
+                        className="w-full px-8 py-5 bg-gray-50 border border-transparent rounded-2xl text-[var(--text-primary)] focus:bg-white focus:border-[var(--accent-primary)] focus:ring-4 focus:ring-[var(--accent-primary)]/10 transition-all outline-none font-medium placeholder:text-gray-300"
                     />
                 </div>
             </div>
 
-            <div style={{ marginBottom: '1.5rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Email</label>
+            <div className="mb-8">
+                <label className="block text-[11px] font-black uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-4 opacity-60 px-2">Email Address</label>
                 <input type="email"
                     name="email"
+                    placeholder="john@example.com"
                     required
-                    style={{ width: '100%', padding: '1rem', background: 'rgba(0,0,0,0.3)', border: '1px solid var(--glass-border)', borderRadius: '8px', color: '#fff', outline: 'none', transition: 'border-color 0.3s' }}
-                    onFocus={(e) => e.target.style.borderColor = 'var(--accent-cyan)'}
-                    onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
+                    className="w-full px-8 py-5 bg-gray-50 border border-transparent rounded-2xl text-[var(--text-primary)] focus:bg-white focus:border-[var(--accent-primary)] focus:ring-4 focus:ring-[var(--accent-primary)]/10 transition-all outline-none font-medium placeholder:text-gray-300"
                 />
             </div>
 
-            <div style={{ marginBottom: '2rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Project Details</label>
-                <textarea rows={6}
+            <div className="mb-10">
+                <label className="block text-[11px] font-black uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-4 opacity-60 px-2">Project Vision</label>
+                <textarea rows={5}
                     name="projectDetails"
+                    placeholder="Tell us about your mission..."
                     required
-                    style={{ width: '100%', padding: '1rem', background: 'rgba(0,0,0,0.3)', border: '1px solid var(--glass-border)', borderRadius: '8px', color: '#fff', outline: 'none', transition: 'border-color 0.3s' }}
-                    onFocus={(e) => e.target.style.borderColor = 'var(--accent-cyan)'}
-                    onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
+                    className="w-full px-8 py-5 bg-gray-50 border border-transparent rounded-2xl text-[var(--text-primary)] focus:bg-white focus:border-[var(--accent-primary)] focus:ring-4 focus:ring-[var(--accent-primary)]/10 transition-all outline-none resize-none font-medium placeholder:text-gray-300"
                 ></textarea>
             </div>
 
             <button
                 type="submit"
-                className="btn btn-primary"
-                style={{ width: '100%', opacity: status === 'loading' ? 0.7 : 1, cursor: status === 'loading' ? 'wait' : 'pointer' }}
+                className="btn btn-primary w-full py-6 text-[13px] font-black tracking-[0.2em] uppercase shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all duration-500"
                 disabled={status === 'loading'}
             >
-                {status === 'loading' ? 'Initiating...' : 'Initiate Launch Sequence'}
+                {status === 'loading' ? 'IGNITING...' : 'LAUNCH PROJECT'}
             </button>
 
             {message && (
-                <div style={{
-                    marginTop: '1rem',
-                    padding: '1rem',
-                    borderRadius: '8px',
-                    backgroundColor: status === 'success' ? 'rgba(0, 255, 0, 0.1)' : 'rgba(255, 0, 0, 0.1)',
-                    border: `1px solid ${status === 'success' ? '#00ff00' : '#ff0000'}`,
-                    color: status === 'success' ? '#00ff00' : '#ff0000',
-                    textAlign: 'center'
-                }}>
+                <div className={`mt-6 p-4 rounded-xl text-center font-bold border ${status === 'success'
+                    ? 'bg-emerald-50 border-emerald-200 text-emerald-600'
+                    : 'bg-red-50 border-red-200 text-red-600'
+                    }`}>
                     {message}
                 </div>
             )}

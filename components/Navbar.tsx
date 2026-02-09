@@ -48,40 +48,38 @@ export default function Navbar({ content }: { content: any }) {
     };
 
     return (
-        <header className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-300 ${scrolled ? 'py-6 bg-[var(--bg-void)] border-b border-white/10 shadow-2xl' : 'py-8 md:py-10 bg-transparent'}`}>
-            <div className="container mx-auto px-6 md:px-8 flex justify-between items-center">
-                <Link href="/" className="font-[family-name:var(--font-heading)] text-xl md:text-2xl font-bold text-[var(--text-primary)] flex items-center z-[1001]">
-                    {navContent.logo.text}<span className="text-[var(--accent-cyan)]">{navContent.logo.accent}</span>
-                </Link>
+        <header className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 ${scrolled ? 'py-4 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm' : 'py-8 bg-transparent'}`}>
+            <div className="container mx-auto px-6 md:px-8 flex items-center justify-between">
+                <div className="flex-shrink-0 z-10">
+                    <Link href="/" className="font-heading text-2xl font-extrabold tracking-tighter text-[var(--text-primary)] flex items-center">
+                        {navContent.logo.text}<span className="text-[var(--accent-primary)]">{navContent.logo.accent}</span>
+                    </Link>
+                </div>
 
-                {/* Desktop Navigation */}
-                <nav className="hidden md:block">
-                    <ul className="flex gap-8 lg:gap-12">
+                <nav className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <ul className="flex gap-10">
                         {navContent.links && navContent.links.map((link: any, index: number) => (
                             <li key={index}>
-                                {link.href.startsWith('/#') ? (
-                                    <a href={link.href} onClick={(e) => handleScrollTo(e, link.href)} className="text-sm uppercase tracking-widest text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors relative group">
-                                        {link.label}
-                                        <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[var(--accent-cyan)] transition-all duration-300 group-hover:w-full"></span>
-                                    </a>
-                                ) : (
-                                    <Link href={link.href} className="text-sm uppercase tracking-widest text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors relative group">
-                                        {link.label}
-                                        <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[var(--accent-cyan)] transition-all duration-300 group-hover:w-full"></span>
-                                    </Link>
-                                )}
+                                <Link
+                                    href={link.href}
+                                    onClick={(e) => link.href.startsWith('/#') && handleScrollTo(e, link.href)}
+                                    className="text-[13px] uppercase tracking-widest font-bold text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-all relative group"
+                                >
+                                    {link.label}
+                                    <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[var(--accent-primary)] transition-all duration-300 group-hover:w-full"></span>
+                                </Link>
                             </li>
                         ))}
                     </ul>
                 </nav>
 
-                <div className="hidden md:block">
-                    <Link href={navContent.cta.href} className="btn btn-primary text-xs px-6 py-3" style={{ marginTop: '1rem' }}>
+                <div className="hidden md:flex flex-shrink-0 items-center gap-4 z-10">
+                    <Link href={navContent.cta.href} className="btn btn-primary !text-[12px] !font-bold !tracking-widest !py-3 !px-8 flex items-center gap-2">
                         {navContent.cta.label}
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                     </Link>
                 </div>
 
-                {/* Mobile Menu Button */}
                 <button
                     className="md:hidden z-[1001] text-[var(--text-primary)] focus:outline-none"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -95,7 +93,6 @@ export default function Navbar({ content }: { content: any }) {
                     </svg>
                 </button>
 
-                {/* Mobile Menu Overlay */}
                 <AnimatePresence>
                     {mobileMenuOpen && (
                         <motion.div
@@ -103,18 +100,18 @@ export default function Navbar({ content }: { content: any }) {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: '100%' }}
                             transition={{ type: "tween", duration: 0.3 }}
-                            className="fixed inset-0 bg-[var(--bg-void)] z-[1000] flex flex-col items-center justify-center space-y-8 md:hidden"
+                            className="fixed inset-0 bg-white z-[1000] flex flex-col items-center justify-center space-y-8 md:hidden"
                         >
                             <nav>
                                 <ul className="flex flex-col items-center gap-8">
                                     {navContent.links && navContent.links.map((link: any, index: number) => (
                                         <li key={index}>
                                             {link.href.startsWith('/#') ? (
-                                                <a href={link.href} onClick={(e) => handleScrollTo(e, link.href)} className="text-xl uppercase tracking-widest text-[var(--text-primary)] hover:text-[var(--accent-cyan)]">
+                                                <a href={link.href} onClick={(e) => handleScrollTo(e, link.href)} className="text-xl font-bold text-[var(--text-primary)]">
                                                     {link.label}
                                                 </a>
                                             ) : (
-                                                <Link href={link.href} onClick={() => setMobileMenuOpen(false)} className="text-xl uppercase tracking-widest text-[var(--text-primary)] hover:text-[var(--accent-cyan)]">
+                                                <Link href={link.href} onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold text-[var(--text-primary)]">
                                                     {link.label}
                                                 </Link>
                                             )}
@@ -122,7 +119,7 @@ export default function Navbar({ content }: { content: any }) {
                                     ))}
                                 </ul>
                             </nav>
-                            <Link href={navContent.cta.href} onClick={() => setMobileMenuOpen(false)} className="btn btn-primary text-sm px-8 py-3" style={{ marginTop: '1rem', paddingTop: '1rem' }}>
+                            <Link href={navContent.cta.href} onClick={() => setMobileMenuOpen(false)} className="btn btn-primary text-base px-10 py-4">
                                 {navContent.cta.label}
                             </Link>
                         </motion.div>
