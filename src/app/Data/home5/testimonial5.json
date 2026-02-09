@@ -1,0 +1,14 @@
+[
+  {
+    "icon": "/assets/img/testimonial/tes7-smoll-img.png",
+    "subtitle": "CEO, StartupInc",
+    "title": "James Cameron",
+    "desc": "OrbitThink's ability to blend gaming tech with enterprise solutions helped us create a unique training platform that our users love."
+  },
+  {
+    "icon": "/assets/img/testimonial/tes7-smoll-img.png",
+    "subtitle": "Director, HealthTech",
+    "title": "Linda Hamilton",
+    "desc": "The security and scalability of the patient monitoring system they built gave us the confidence to expand to three new regions."
+  }
+]

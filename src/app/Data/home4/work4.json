@@ -1,0 +1,44 @@
+[
+  {
+    "subtitle": "Step 01",
+    "title": "Ignition: Discovery",
+    "desc": "We analyze your data landscape and identify high-impact AI opportunities to map out your digital trajectory.",
+    "btnLink": "/service/service-details",
+    "addClass": "work4-box heading4"
+  },
+  {
+    "subtitle": "Step 02",
+    "title": "Strategy & Planning",
+    "desc": "We develop a comprehensive roadmap, defining the technical architecture and milestones for your project.",
+    "btnLink": "/service/service-details",
+    "addClass": "work4-box active heading4"
+  },
+  {
+    "subtitle": "Step 03",
+    "title": "Orbit: Development",
+    "desc": "Our engineers build custom models and solutions tailored to your parameters, iterating rapidly for launch.",
+    "btnLink": "/service/service-details",
+    "addClass": "work4-box heading4"
+  },
+  {
+    "subtitle": "Step 04",
+    "title": "Testing & QA",
+    "desc": "Rigorous testing and security audits ensure that your systems are mission-ready and compliant with industry standards.",
+    "btnLink": "/service/service-details",
+    "addClass": "work4-box heading4"
+  },
+  {
+    "subtitle": "Step 05",
+    "title": "Velocity: Deployment",
+    "desc": "We ensure your solution reaches escape velocity with seamless deployment and auto-scaling capabilities.",
+    "btnLink": "/service/service-details",
+    "addClass": "work4-box heading4"
+  },
+  {
+    "subtitle": "Step 06",
+    "title": "Support & Optimization",
+    "desc": "Our mission doesn't end at launch. We provide 24/7 support and continuous optimization to keep you ahead.",
+    "btnLink": "/service/service-details",
+    "addClass": "work4-box heading4"
+  }
+]

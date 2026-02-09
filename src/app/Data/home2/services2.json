@@ -1,0 +1,44 @@
+[
+  {
+    "icon": "/assets/img/icons/service2-icon1.png",
+    "title": "Data Strategy",
+    "desc": "Analyzing your data landscape to identify high-impact AI opportunities and strategic roadmaps.",
+    "btnLink": "/service/service-details",
+    "addClass": "servcie2-box"
+  },
+  {
+    "icon": "/assets/img/icons/service2-icon2.png",
+    "title": "Mobile Innovation",
+    "desc": "High-performance cross-platform applications with native integrations and seamless UX.",
+    "btnLink": "/service/service-details",
+    "addClass": "servcie2-box active"
+  },
+  {
+    "icon": "/assets/img/icons/service2-icon3.png",
+    "title": "Cloud Architectures",
+    "desc": "Scalable cloud-native solutions on Azure and AWS ensuring high availability and security.",
+    "btnLink": "/service/service-details",
+    "addClass": "servcie2-box"
+  },
+  {
+    "icon": "/assets/img/icons/service2-icon4.png",
+    "title": "Enterprise Security",
+    "desc": "HIPAA-compliant systems and secure architectures protecting your critical business data.",
+    "btnLink": "/service/service-details",
+    "addClass": "servcie2-box"
+  },
+  {
+    "icon": "/assets/img/icons/service2-icon5.png",
+    "title": "AI & Analytics",
+    "desc": "Custom LLMs, RAG agents, and computer vision systems turning data into actionable intelligence.",
+    "btnLink": "/service/service-details",
+    "addClass": "servcie2-box"
+  },
+  {
+    "icon": "/assets/img/icons/service2-icon6.png",
+    "title": "Immersive Gaming",
+    "desc": "Unity 2D/3D development with real-time multiplayer servers for engaging virtual experiences.",
+    "btnLink": "/service/service-details",
+    "addClass": "servcie2-box"
+  }
+]

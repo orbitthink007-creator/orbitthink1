@@ -1,0 +1,26 @@
+[
+  {
+    "icon": "/assets/img/testimonial/tes4-img1.png",
+    "subtitle": "CTO, TechStart",
+    "title": "Sarah Johnson",
+    "desc": "OrbitThink transformed our vision into a scalable reality. Their expertise in AI and web development helped us launch our platform ahead of schedule."
+  },
+  {
+    "icon": "/assets/img/testimonial/tes4-img2.png",
+    "subtitle": "Director of Operations",
+    "title": "Michael Chen",
+    "desc": "The mobile application they built for us is flawless. The geo-fencing capabilities and offline performance are exactly what we needed."
+  },
+  {
+    "icon": "/assets/img/testimonial/tes4-img3.png",
+    "subtitle": "VP of Engineering",
+    "title": "Emily Blunt",
+    "desc": "Their web team rebuilt our e-commerce platform from the ground up. Sales have increased significantly due to the improved UX."
+  },
+  {
+    "icon": "/assets/img/testimonial/tes4-img4.png",
+    "subtitle": "Founder, GameStudio",
+    "title": "David Warner",
+    "desc": "The multiplayer game backend they architected handles thousands of concurrent users without a hitch. Truly impressive engineering."
+  }
+]

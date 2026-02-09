@@ -1,0 +1,17 @@
+[
+  {
+    "img": "/assets/img/icons/work-iocn1.png",
+    "title": "Scalable Architecture",
+    "desc": "We build systems designed to grow with your business, ensuring performance and reliability at any scale."
+  },
+  {
+    "img": "/assets/img/icons/work-iocn2.png",
+    "title": "End-to-End Development",
+    "desc": "From initial concept to deployment and maintenance, we handle the entire lifecycle of your product."
+  },
+  {
+    "img": "/assets/img/icons/work-iocn3.png",
+    "title": "Cutting-Edge Technology",
+    "desc": "We leverage the latest advancements in AI, Blockchain, and Cloud Computing to give you a competitive edge."
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "img": "/assets/img/others/project-page-img1.png",
+    "title": "Tower Defence VR",
+    "desc": "Immersive Oculus VR experience",
+    "category": "Gaming"
+  },
+  {
+    "img": "/assets/img/others/project-page-img2.png",
+    "title": "IGU: Real-World Tag",
+    "desc": "Geo-location based multiplayer game",
+    "category": "Mobile"
+  },
+  {
+    "img": "/assets/img/others/project-page-img3.png",
+    "title": "EHR Platform",
+    "desc": "HIPAA-compliant patient monitoring",
+    "category": "Web"
+  },
+  {
+    "img": "/assets/img/others/project-page-img4.png",
+    "title": "VisionX Surveillance",
+    "desc": "AI-driven threat detection",
+    "category": "AI"
+  },
+  {
+    "img": "/assets/img/others/project-page-img5.png",
+    "title": "Tasheel FS",
+    "desc": "FinTech solution for travel agencies",
+    "category": "Mobile"
+  },
+  {
+    "img": "/assets/img/others/project-page-img1.png",
+    "title": "Volton Solar",
+    "desc": "E-commerce platform with WhatsApp checkout",
+    "category": "Web"
+  },
+  {
+    "img": "/assets/img/others/project-page-img2.png",
+    "title": "Healthcare Chatbot",
+    "desc": "LLM-powered clinical assistant",
+    "category": "AI"
+  },
+  {
+    "img": "/assets/img/others/project-page-img3.png",
+    "title": "ForexBoard",
+    "desc": "Multiplayer game backend with Nakama",
+    "category": "Gaming"
+  }
+]

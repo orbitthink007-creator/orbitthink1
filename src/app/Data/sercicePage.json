@@ -1,0 +1,50 @@
+[
+  {
+    "icon": "/assets/img/icons/service-page-icon1.png",
+    "title": "Immersive Gaming",
+    "desc": "Unity 2D/3D & VR experiences. Multiplayer servers (Nakama/Photon) for global scalability.",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "icon": "/assets/img/icons/service-page-icon2.png",
+    "title": "Mobile Innovation",
+    "desc": "Cross-platform Flutter apps with native performance. Geo-fencing, Mapping, and complex integrations.",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "icon": "/assets/img/icons/service-page-icon3.png",
+    "title": "Web Solutions",
+    "desc": "Full-stack web architectures using Next.js & React. From high-traffic E-commerce to complex EHR systems.",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "icon": "/assets/img/icons/service-page-icon4.png",
+    "title": "Enterprise AI",
+    "desc": "Custom LLMs, RAG Agents, and Computer Vision for real-time surveillance. Cloud MLOps on Azure/AWS.",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "icon": "/assets/img/icons/service-page-icon5.png",
+    "title": "Data Strategy",
+    "desc": "Analyzing your data landscape to identify high-impact AI opportunities and strategic roadmaps.",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "icon": "/assets/img/icons/service-page-icon6.png",
+    "title": "Cloud Architectures",
+    "desc": "Scalable, secure, and robust cloud solutions on Azure and AWS ensuring high availablity.",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "icon": "/assets/img/icons/service-page-icon7.png",
+    "title": "Enterprise Security",
+    "desc": "HIPAA-compliant systems preserving integrity and protecting your critical business data.",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "icon": "/assets/img/icons/service-page-icon8.png",
+    "title": "UI/UX Design",
+    "desc": "Creating intuitive and engaging user experiences for web and mobile applications.",
+    "btnLink": "/service/service-details"
+  }
+]

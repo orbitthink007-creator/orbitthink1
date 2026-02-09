@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Jason Behrendorff",
+    "rating": "(4.5)",
+    "desc": "OrbitThink's AI solution revolutionized our surveillance operations. The real-time detection capabilities are unmatched."
+  },
+  {
+    "title": "Matthew Kuhnemann",
+    "rating": "(5.0)",
+    "desc": "Building our healthcare platform with OrbitThink was the best decision. They navigated HIPAA compliance effortlessly and delivered a robust EHR system."
+  },
+  {
+    "title": "Scott Boland",
+    "rating": "(4.8)",
+    "desc": "The mobile game they developed for us has seamless multiplayer performance. Their expertise in Unity and Photon is evident in every frame."
+  },
+  {
+    "title": "Emily Blunt",
+    "rating": "(5.0)",
+    "desc": "Their web team rebuilt our e-commerce platform from the ground up. Sales have increased by 40% due to the improved UX and speed."
+  },
+  {
+    "title": "David Warner",
+    "rating": "(4.7)",
+    "desc": "From concept to launch, the OrbitThink team was exceptional. Their 'Mission Trajectory' process kept us informed and on track throughout."
+  },
+  {
+    "title": "Sarah Connor",
+    "rating": "(5.0)",
+    "desc": "We needed a complex enterprise AI agent, and they delivered. It's now automating 60% of our customer support queries."
+  }
+]

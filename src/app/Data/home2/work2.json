@@ -1,0 +1,37 @@
+[
+  {
+    "icon": "/assets/img/work/work2-img1.png",
+    "title": "Ignition: Discovery & Analysis",
+    "desc": "We start by analyzing your data landscape and identifying high-impact opportunities. We map out the trajectory for your digital transformation.",
+    "btnLink": "/service/service-details",
+    "addClass": "col-lg-7"
+  },
+  {
+    "icon": "/assets/img/work/work2-img2.png",
+    "title": "Orbit: Build & Train",
+    "desc": "Our engineers build custom models and solutions tailored to your parameters. We iterate rapidly to ensure the system is ready for launch.",
+    "btnLink": "/service/service-details",
+    "addClass": "col-lg-5"
+  },
+  {
+    "icon": "/assets/img/work/work2-img3.png",
+    "title": "Velocity: Deploy & Scale",
+    "desc": "We ensure your solution reaches escape velocity with seamless deployment, rigorous monitoring, and auto-scaling capabilities.",
+    "btnLink": "/service/service-details",
+    "addClass": "col-lg-4"
+  },
+  {
+    "icon": "/assets/img/work/work2-img4.png",
+    "title": "Quality Assurance",
+    "desc": " rigorous testing and security audits ensure that your systems are mission-ready and compliant with industry standards.",
+    "btnLink": "/service/service-details",
+    "addClass": "col-lg-4"
+  },
+  {
+    "icon": "/assets/img/work/work2-img5.png",
+    "title": "Continuous Support",
+    "desc": "Our mission doesn't end at launch. We provide 24/7 support and continuous optimization to keep you ahead of the curve.",
+    "btnLink": "/service/service-details",
+    "addClass": "col-lg-4"
+  }
+]

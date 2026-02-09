@@ -1,0 +1,23 @@
+[
+  {
+    "icon": "/assets/img/icons/service7-icon1.svg",
+    "title": "Immersive Gaming",
+    "desc": "Unity 2D/3D & VR experiences. Multiplayer servers (Nakama/Photon) for global scalability.",
+    "btnLink": "/service/service-details",
+    "image1": "/assets/img/service/service7-img1.png"
+  },
+  {
+    "icon": "/assets/img/icons/service7-icon2.svg",
+    "title": "Mobile & Web Innovation",
+    "desc": "Cross-platform Flutter apps and scalable Next.js web architectures for high-performance.",
+    "btnLink": "/service/service-details",
+    "image1": "/assets/img/service/service7-img2.png"
+  },
+  {
+    "icon": "/assets/img/icons/service7-icon3.svg",
+    "title": "Enterprise AI & Cloud",
+    "desc": "Custom LLMs, RAG Agents, and Cloud MLOps on Azure/AWS for intelligent automation.",
+    "btnLink": "/service/service-details",
+    "image1": "/assets/img/service/service7-img3.png"
+  }
+]
