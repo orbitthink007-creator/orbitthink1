@@ -1948,10 +1948,10 @@ body.body {
   --ztc-text-text-2: #fff;
   --ztc-text-pera-text-1: #676879;
   --ztc-text-pera-text-2: #d2d1d5;
-  --ztc-bg-main-bg-1: var(--purplethird);
-  --ztc-bg-main-bg-2: var(--purplefirst);
-  --ztc-bg-main-bg-3: var(--purplemain);
-  --ztc-bg-main-bg-4: var(--purplefifth);
+  --ztc-bg-main-bg-1: #4311af;
+  --ztc-bg-main-bg-2: #932eb0;
+  --ztc-bg-main-bg-3: #1b03ae;
+  --ztc-bg-main-bg-4: #8429b0;
   --ztc-bg-bg-1: #f8f9fa;
   --ztc-bg-color-w: #fff;
   --ztc-bg-bg-2: #e7ebf7;
@@ -2701,7 +2701,7 @@ body.body {
 
 .heading8 span.span {
   display: inline-block;
-  color: #4d32a5;
+  color: var(--ztc-bg-main-bg-2);
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -2724,7 +2724,7 @@ body.body {
 
 .heading8 h2 span {
   display: inline-block;
-  color: #4d32a5;
+  color: var(--ztc-bg-main-bg-2);
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -2763,7 +2763,7 @@ body.body {
 
 .heading8 h4 a:hover {
   transition: all 0.4s;
-  color: #4d32a5;
+  color: var(--ztc-bg-main-bg-2);
 }
 
 .heading6-w span.span {
@@ -4029,7 +4029,7 @@ a.header__search.header-search-btn p {
 */
 .theme-btn1 {
   display: inline-block;
-  background-color: var(--ztc-bg-main-bg-1);
+  background-color: var(--ztc-bg-main-bg-2);
   border-radius: 7px;
   padding: 16px 20px;
   color: var(--ztc-text-text-2);
@@ -5341,7 +5341,7 @@ a.header__search.header-search-btn p {
   top: 0;
   left: 0;
   border-radius: 4px;
-  background: #4d32a5;
+  background: var(--ztc-bg-main-bg-2);
   z-index: -2;
 }
 
@@ -5377,7 +5377,7 @@ a.header__search.header-search-btn p {
 .theme-btn15 {
   display: inline-block;
   padding: 18px 10px 18px 18px;
-  color: #4d32a5;
+  color: var(--ztc-bg-main-bg-2);
   font-size: 19px;
   font-style: normal;
   font-weight: 600;
@@ -5432,7 +5432,7 @@ a.header__search.header-search-btn p {
   top: 0;
   left: 0;
   border-radius: 4px;
-  border: 2px solid #4d32a5;
+  border: 2px solid var(--ztc-bg-main-bg-2);
   z-index: -2;
 }
 
@@ -8390,7 +8390,7 @@ a.header__search.header-search-btn p {
   line-height: 70px;
   text-align: center;
   border-radius: 50%;
-  background-color: #4d32a5;
+  background-color: var(--ztc-bg-main-bg-2);
   transition: all 0.4s;
   margin: auto;
 }
@@ -8422,13 +8422,13 @@ a.header__search.header-search-btn p {
 
 .service8 .service-box .heading8 .learn:hover {
   transition: all 0.4s;
-  color: #4d32a5;
+  color: var(--ztc-bg-main-bg-2);
 }
 
 .service8 .service-box:hover {
   transition: all 0.4s;
   transform: translateY(-10px);
-  background-color: #4d32a5;
+  background-color: var(--ztc-bg-main-bg-2);
 }
 
 .service8 .service-box:hover .icon {
@@ -9247,7 +9247,7 @@ a.header__search.header-search-btn p {
   top: 0;
   height: 100%;
   width: 30%;
-  background-color: #4d32a5;
+  background-color: var(--ztc-bg-main-bg-2);
   z-index: -3;
 }
 
@@ -9297,7 +9297,7 @@ a.header__search.header-search-btn p {
 }
 
 .choose8 .choose8-images .shape h5 {
-  color: #4d32a5;
+  color: var(--ztc-bg-main-bg-2);
   font-size: 40px;
   font-style: normal;
   font-weight: 600;
@@ -9871,7 +9871,7 @@ a.header__search.header-search-btn p {
 
 .cta8 .bg {
   border-radius: 4px;
-  background: #4d32a5;
+  background: var(--ztc-bg-main-bg-2);
   padding: 60px 48px;
 }
 
@@ -10921,7 +10921,7 @@ a.header__search.header-search-btn p {
 .case8 .case8-box:hover .hover-area {
   height: 200px;
   transition: all 0.4s;
-  background-color: #4d32a5;
+  background-color: var(--ztc-bg-main-bg-2);
 }
 
 .case8 .case8-box:hover .hover-area .hover-heaer .icon img {
@@ -11468,7 +11468,7 @@ a.header__search.header-search-btn p {
 .pricing8 .single-pricing-box .most-popular {
   background-color: var(--ztc-bg-color-w);
   border-radius: 7px;
-  border: 1px solid #4d32a5;
+  border: 1px solid var(--ztc-bg-main-bg-2);
   padding: 8px;
   width: 120px;
   text-align: center;
@@ -11483,7 +11483,7 @@ a.header__search.header-search-btn p {
   font-size: var(--f-fs-font-fs16);
   line-height: var(--f-fs-font-fs16);
   font-weight: var(--f-fw-blod);
-  color: #4d32a5;
+  color: var(--ztc-bg-main-bg-2);
 }
 
 .pricing8 .single-pricing-box .title {
@@ -11534,7 +11534,7 @@ a.header__search.header-search-btn p {
   text-align: center;
   position: absolute;
   bottom: 22px;
-  background: #4d32a5;
+  background: var(--ztc-bg-main-bg-2);
 }
 
 .pricing8 .single-pricing-box .button a span {
@@ -11559,7 +11559,7 @@ a.header__search.header-search-btn p {
   width: 20px;
   text-align: center;
   line-height: 20px;
-  background-color: #4d32a5;
+  background-color: var(--ztc-bg-main-bg-2);
   border-radius: 50%;
   font-size: 12px;
   color: var(--ztc-bg-color-w);
@@ -11569,7 +11569,7 @@ a.header__search.header-search-btn p {
 }
 
 .pricing8 .single-pricing-box:hover {
-  background-color: #4d32a5;
+  background-color: var(--ztc-bg-main-bg-2);
   transition: all 0.4s;
 }
 
@@ -11601,7 +11601,7 @@ a.header__search.header-search-btn p {
   position: absolute;
   bottom: 22px;
   background-color: #fff;
-  color: #4d32a5;
+  color: var(--ztc-bg-main-bg-2);
 }
 
 .pricing8 .single-pricing-box:hover h4 {
@@ -11641,7 +11641,7 @@ a.header__search.header-search-btn p {
 }
 
 .pricing8 .single-pricing-box.active {
-  background-color: #4d32a5;
+  background-color: var(--ztc-bg-main-bg-2);
   transition: all 0.4s;
 }
 
@@ -12268,7 +12268,7 @@ a.header__search.header-search-btn p {
 }
 
 .contact8 .contact6-box:hover {
-  background-color: #4d32a5;
+  background-color: var(--ztc-bg-main-bg-2);
   transition: all 0.4s;
   transform: translateY(-7px);
 }
@@ -15250,7 +15250,7 @@ a.header__search.header-search-btn p {
 
 .hero8 .main-heading span.span {
   display: inline-block;
-  color: #4d32a5;
+  color: var(--ztc-bg-main-bg-2);
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -16851,7 +16851,7 @@ a.header__search.header-search-btn p {
 }
 
 .team8 .team-box .image .hover-area ul li a:hover {
-  background: #4d32a5;
+  background: var(--ztc-bg-main-bg-2);
   color: #fff;
   transition: all 0.4s;
 }
@@ -16880,7 +16880,7 @@ a.header__search.header-search-btn p {
 
 .team8 .team-box .heading-area h4 a:hover {
   transition: all 0.4s;
-  color: #4d32a5;
+  color: var(--ztc-bg-main-bg-2);
 }
 
 .team8 .team-box .heading-area p {
@@ -17834,7 +17834,7 @@ a.header__search.header-search-btn p {
   line-height: 60px;
   border: none;
   border-radius: 50%;
-  background-color: #4d32a5;
+  background-color: var(--ztc-bg-main-bg-2);
   color: #fff;
   transition: all 0.4s;
 }
@@ -21870,7 +21870,7 @@ a.header__search.header-search-btn p {
 
 .footer8 .single-footer-items .social-icon li a:hover {
   color: var(--ztc-bg-color-w);
-  background-color: #4d32a5;
+  background-color: var(--ztc-bg-main-bg-2);
   transition: all 0.4s;
 }
 
@@ -21885,7 +21885,7 @@ a.header__search.header-search-btn p {
 }
 
 .footer8 .single-footer-items .menu-list li a:hover {
-  color: #4d32a5;
+  color: var(--ztc-bg-main-bg-2);
   transform: translateX(5px);
   transition: all 0.4s;
 }
@@ -21910,7 +21910,7 @@ a.header__search.header-search-btn p {
 }
 
 .footer8 .single-footer-items .contact-box .pera a:hover {
-  color: #4d32a5;
+  color: var(--ztc-bg-main-bg-2);
   transition: all 0.4s;
 }
 
@@ -22912,7 +22912,7 @@ a.header__search.header-search-btn p {
   font-size: var(--ztc-font-size-font-s16);
   line-height: var(--ztc-font-size-font-s16);
   font-weight: var(--ztc-weight-bold);
-  background: #4d32a5;
+  background: var(--ztc-bg-main-bg-2);
   color: var(--ztc-text-text-2);
   padding: 16px;
   transition: all 0.4s;
@@ -22947,7 +22947,7 @@ a.header__search.header-search-btn p {
   color: #fff;
   transition: all 0.4s;
   transform: translateY(-5px);
-  background: #4d32a5;
+  background: var(--ztc-bg-main-bg-2);
 }
 
 .header-area.header-area8
@@ -27122,7 +27122,7 @@ li.has-dropdown1 span {
   font-size: var(--ztc-font-size-font-s16);
   line-height: var(--ztc-font-size-font-s16);
   font-weight: var(--ztc-weight-bold);
-  background: #4d32a5;
+  background: var(--ztc-bg-main-bg-2);
   color: var(--ztc-text-text-2);
   padding: 16px;
   transition: all 0.4s;
@@ -27159,7 +27159,7 @@ li.has-dropdown1 span {
   color: #fff;
   transition: all 0.4s;
   transform: translateY(-5px);
-  background: #4d32a5;
+  background: var(--ztc-bg-main-bg-2);
 }
 
 .header-area.header-area8
