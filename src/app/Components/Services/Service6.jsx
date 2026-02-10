@@ -1,13 +1,14 @@
 import Link from 'next/link';;
-import data from '../../Data/sercicePage.json';
+import mainData from '../../../data/main-data.json';
 
 const Service6 = () => {
-    return (
-        <div className="servcie2 service-page-sec">
-            <div className="space100"></div>
-        <div className="container">
-          <div className="row">
-          {data.map((item, i) => (
+  const { servicePage } = mainData;
+  return (
+    <div className="servcie2 service-page-sec">
+      <div className="space100"></div>
+      <div className="container">
+        <div className="row">
+          {servicePage.list.map((item, i) => (
             <div key={i} className="col-lg-4 col-md-6">
               <div className="">
                 <div className="servcie2-box">
@@ -23,12 +24,12 @@ const Service6 = () => {
                 </div>
               </div>
             </div>
-            ))}
+          ))}
 
-          </div>
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default Service6;

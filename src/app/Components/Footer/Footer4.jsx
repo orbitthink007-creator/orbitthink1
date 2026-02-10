@@ -1,6 +1,8 @@
 import Link from "next/link";
+import data from "../../../data/main-data.json";
 
 const Footer4 = () => {
+  const { footer } = data;
   return (
     <div className="footer4 _relative">
       <div className="container">
@@ -8,17 +10,16 @@ const Footer4 = () => {
           <div className="col-lg-4 col-md-6 col-12">
             <div className="single-footer-items footer-logo-area">
               <div className="footer-logo">
-                <a href=""><img src="/assets/img/logo/orbitlogo.png" alt="" /></a>
+                <a href=""><img src={footer.logo} alt="" /></a>
               </div>
               <div className="space20"></div>
               <div className="heading4">
-                <p>At OrbitThink IT Solutions, we are dedicated to delivering innovative technology solutions tailored to meet the unique needs of businesses like yours. </p>
+                <p>{footer.description}</p>
               </div>
               <ul className="social-icon">
-                <li><a href="#"><i className="bi bi-linkedin"></i></a></li>
-                <li><a href="#"><i className="bi bi-twitter"></i></a></li>
-                <li><a href="#"><i className="bi bi-youtube"></i></a></li>
-                <li><a href="#"><i className="bi bi-instagram"></i></a></li>
+                {footer.socialLinks.map((social, index) => (
+                  <li key={index}><a href={social.href}><i className={social.icon}></i></a></li>
+                ))}
               </ul>
             </div>
           </div>
@@ -28,10 +29,9 @@ const Footer4 = () => {
               <h3>Service We Offer</h3>
 
               <ul className="menu-list">
-                <li><Link href="/service/service-details">Cloud Computing Solution</Link></li>
-                <li><Link href="/service/service-details">Cybersecurity & Compliance</Link></li>
-                <li><Link href="/service/service-details">Software Development</Link></li>
-                <li><Link href="/service/service-details">It Consulting & Support</Link></li>
+                {footer.services.map((service, index) => (
+                  <li key={index}><Link href={service.href}>{service.label}</Link></li>
+                ))}
               </ul>
             </div>
           </div>
@@ -41,11 +41,9 @@ const Footer4 = () => {
               <h3>Useful Links</h3>
 
               <ul className="menu-list">
-                <li><Link href="/about">About Us </Link></li>
-                <li><Link href="/service">Our Services</Link></li>
-                <li><Link href="/blog">Blog & News</Link></li>
-                <li><Link href="/project">Project</Link></li>
-                <li><Link href="/contact">Contact Us</Link></li>
+                {footer.usefulLinks.map((link, index) => (
+                  <li key={index}><Link href={link.href}>{link.label}</Link></li>
+                ))}
               </ul>
             </div>
           </div>
@@ -55,41 +53,16 @@ const Footer4 = () => {
             <div className="single-footer-items">
               <h3>Contact Us</h3>
 
-              <div className="contact-box">
-                <div className="icon">
-                  <img src="/assets/img/icons/footer1-icon1.png" alt="" />
+              {footer.contact.map((item, index) => (
+                <div className="contact-box" key={index}>
+                  <div className="icon">
+                    <img src={item.icon} alt="" />
+                  </div>
+                  <div className="pera">
+                    <a href={item.href}>{item.text}</a>
+                  </div>
                 </div>
-                <div className="pera">
-                  <a href="tel:0500222333">0500 222 333</a>
-                </div>
-              </div>
-
-              <div className="contact-box">
-                <div className="icon">
-                  <img src="/assets/img/icons/footer1-icon2.png" alt="" />
-                </div>
-                <div className="pera">
-                  <a href="tel:0356588547">03 5658 8547</a>
-                </div>
-              </div>
-
-              <div className="contact-box">
-                <div className="icon">
-                  <img src="/assets/img/icons/footer1-icon3.png" alt="" />
-                </div>
-                <div className="pera">
-                  <a href="mailto:admin@OrbitThink.org">admin@OrbitThink.org</a>
-                </div>
-              </div>
-
-              <div className="contact-box">
-                <div className="icon">
-                  <img src="/assets/img/icons/footer1-icon4.png" alt="" />
-                </div>
-                <div className="pera">
-                  <a href="mailto:admin@OrbitThink.org">www.OrbitThink.org</a>
-                </div>
-              </div>
+              ))}
 
             </div>
           </div>
@@ -104,13 +77,14 @@ const Footer4 = () => {
           <div className="row align-items-center">
             <div className="col-md-5">
               <div className="coppyright">
-                <p>Copyright @2024 OrbitThink.All Rights Reserved</p>
+                <p>{footer.copyright}</p>
               </div>
             </div>
             <div className="col-md-7">
               <div className="coppyright right-area">
-                <a href="#">Terms & Conditions</a>
-                <a href="#">Privacy Policy</a>
+                {footer.links.map((link, index) => (
+                  <a key={index} href={link.href}>{link.label}</a>
+                ))}
               </div>
             </div>
           </div>

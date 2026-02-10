@@ -1,27 +1,68 @@
+'use client'
 import Link from 'next/link';;
-import data from '../../Data/home4/services4.json';
+import mainData from '../../../data/main-data.json';
 import SectionTitle2 from '../Common/SectionTitle2';
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 const Services4 = () => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
+    const { services } = mainData.home;
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2
+            }
+        }
+    };
+
+    const cardVariants = {
+        hidden: { opacity: 0, y: 40 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+                ease: [0.25, 0.4, 0.25, 1]
+            }
+        }
+    };
+
     return (
-        <div className="service4 sp">
+        <div className="service4 sp" ref={ref}>
             <div className="container">
                 <div className="row">
                     <div className="col-lg-8 m-auto text-center">
-                        <div className="heading4">
+                        <motion.div
+                            className="heading4"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                            transition={{ duration: 0.6 }}
+                        >
                             <SectionTitle2
-                                SubTitle="Our Service 👋"
-                                Title="Comprehensive IT Solution Services"
+                                SubTitle={services.subtitle}
+                                Title={services.title}
                             ></SectionTitle2>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
 
                 <div className="space30"></div>
-                <div className="row">
+                <motion.div
+                    className="row"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                >
 
-                    {data.map((item, i) => (
-                        <div key={i} className="col-lg-3 col-md-6" data-aos="zoom-in-up" data-aos-duration="800">
+                    {services.list.map((item, i) => (
+                        <motion.div key={i} className="col-lg-3 col-md-6" variants={cardVariants}>
                             <div className={item.addClass}>
                                 <div className="icon">
                                     <img src={item.icon} alt="" />
@@ -38,21 +79,25 @@ const Services4 = () => {
                                     <Link href={item.btnLink} className="learn-btn">Read More <span><i className="bi bi-arrow-right"></i></span></Link>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
 
-                </div>
+                </motion.div>
 
                 <div className="space40"></div>
                 <div className="row">
                     <div className="col-lg-12 text-center">
-                        <div className="" data-aos="zoom-in-up" data-aos-duration="700">
-                            <Link className="theme-btn5" href="/service">More Services <span><i className="bi bi-arrow-right"></i></span></Link>
-                        </div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                            transition={{ duration: 0.6, delay: 0.6 }}
+                        >
+                            <Link className="theme-btn5" href={services.moreBtn.href}>{services.moreBtn.label} <span><i className="bi bi-arrow-right"></i></span></Link>
+                        </motion.div>
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 

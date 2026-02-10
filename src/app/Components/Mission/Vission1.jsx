@@ -1,7 +1,8 @@
 import Link from "next/link";
-
+import mainData from '../../../data/main-data.json';
 
 const Vission1 = () => {
+  const { vision } = mainData.aboutPage;
   return (
     <div className="solution about-solution sp">
       <div className="container">
@@ -11,21 +12,21 @@ const Vission1 = () => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="image">
-                    <img src="/assets/img/about/visiton-img1.png" alt="" />
+                    <img src={vision.images[0]} alt="" />
                   </div>
                 </div>
 
                 <div className="col-lg-6">
                   <div className="space30"></div>
                   <div className="image">
-                    <img src="/assets/img/about/visiton-img2.png" alt="" />
+                    <img src={vision.images[1]} alt="" />
                   </div>
                 </div>
 
                 <div className="col-lg-6">
                   <div className="space30"></div>
                   <div className="image">
-                    <img src="/assets/img/about/visiton-img3.png" alt="" />
+                    <img src={vision.images[2]} alt="" />
                   </div>
                 </div>
 
@@ -34,40 +35,29 @@ const Vission1 = () => {
           </div>
           <div className="col-lg-6">
             <div className="heading1">
-              <span className="span"><img src="/assets/img/icons/span1.png" alt="" /> Our Vision</span>
-              <h2>Driving Innovation: Our Vision at OrbitThink</h2>
+              <span className="span"><img src="/assets/img/icons/span1.png" alt="" /> {vision.subtitle}</span>
+              <h2>{vision.title}</h2>
               <div className="space16"></div>
-              <p>At OrbitThink, our vision is to be the leading force driving digital transformation and innovation worldwide. We envision a future where businesses of all sizes have the tools and expertise they need to thrive in an increasingly digital world.</p>
+              <p>{vision.content}</p>
 
-              <div className="item-box">
-                <div className="icon">
+              {vision.items.map((item, index) => (
+                <div key={index} className="item-box">
+                  <div className="icon">
+                    <div className="">
+                      <img src={item.icon} alt="" />
+                    </div>
+                  </div>
                   <div className="">
-                    <img src="/assets/img/icons/about-solution-iocn1.png" alt="" />
+                    <h3><a href="#">{item.title}</a></h3>
+                    <div className="space10"></div>
+                    <p dangerouslySetInnerHTML={{ __html: item.desc }}></p>
                   </div>
                 </div>
-                <div className="">
-                  <h3><a href="#">Network Infrastructure Solutions</a></h3>
-                  <div className="space10"></div>
-                  <p>Build a reliable and secure network infrastructure that <br /> supports your business operations enables seamless</p>
-                </div>
-              </div>
-
-              <div className="item-box">
-                <div className="icon">
-                  <div className="">
-                    <img src="/assets/img/icons/about-solution-iocn2.png" alt="" />
-                  </div>
-                </div>
-                <div className="">
-                  <h3><a href="#">Managed It Services</a></h3>
-                  <div className="space10"></div>
-                  <p>Focus on your core business activities while we take <br /> care of your IT needs with our managed IT services.</p>
-                </div>
-              </div>
+              ))}
 
               <div className="space30"></div>
               <div className="">
-                <Link className="theme-btn1" href="/contact">Get A Quote <span><i className="bi bi-arrow-right"></i></span></Link>
+                <Link className="theme-btn1" href={vision.btn.href}>{vision.btn.label} <span><i className="bi bi-arrow-right"></i></span></Link>
               </div>
             </div>
           </div>
