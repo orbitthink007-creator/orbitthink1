@@ -120,7 +120,7 @@ export default function AdminPanel() {
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Sidebar / Tabs */}
                     <div className="lg:w-64 flex-shrink-0">
-                        <div className="sticky top-32 glass-card !p-4  gap-2 overflow-x-auto lg:overflow-visible">
+                        <div className="sticky top-32 glass-card !p-4 gap-2 overflow-x-auto lg:overflow-visible">
                             {tabs.map(tab => (
                                 <button
                                     key={tab}

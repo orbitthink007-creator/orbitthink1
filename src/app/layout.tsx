@@ -4,6 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./globals.css";
+import Script from "next/script";
 import Header4 from './Components/Header/HeaderStyle4';
 import Footer4 from './Components/Footer/Footer4';
 import { ContentProvider } from './context/ContentContext';
@@ -30,6 +31,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {children}
           <Footer4 />
         </ContentProvider>
+
+        {/* Chat Widget Bot Integration */}
+        <Script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" strategy="beforeInteractive" />
+        <Script src="/widget.js" strategy="afterInteractive" />
       </body>
     </html>
   );

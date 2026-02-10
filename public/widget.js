@@ -3,10 +3,9 @@
     const isLocal = window.location.hostname === 'localhost' ||
         window.location.hostname === '127.0.0.1' ||
         window.location.protocol === 'file:';
-    // const API_URL = isLocal
-    //     ? "http://localhost:8000/api/chat"
-    //     : "https://mehmaaaaaaaam-chatbot.hf.space/api/chat";
-    const API_URL = "https://mehmaaaaaaaam-chatbot.hf.space/api/chat";
+    const API_URL = isLocal
+        ? "http://localhost:8000/api/chat"
+        : "https://mehmaaaaaaaam-chatbot.hf.space/api/chat";
     const THEME_COLOR = "#6d28d9";
 
     // Create Styles
