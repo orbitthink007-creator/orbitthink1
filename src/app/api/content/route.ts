@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/app/lib/mongodb';
 import Content from '@/app/models/Content';
-import { initialContent } from '../../Data/content';
+import { initialContent } from '@/app/Data/content';
 
 export async function GET() {
     await dbConnect();
