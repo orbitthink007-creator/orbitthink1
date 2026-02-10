@@ -1,8 +1,10 @@
+'use client';
 import SectionTitle from "../Common/SectionTitle";
 import PricingCard1 from "./PricingCard1";
-import mainData from '../../../data/main-data.json';
+import { useContent } from "../../context/ContentContext";
 
 const Pricing1 = () => {
+    const { content: mainData } = useContent();
     const { pricing } = mainData.home;
     return (
         <div className="pricing sp">

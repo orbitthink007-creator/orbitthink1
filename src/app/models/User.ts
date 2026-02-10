@@ -12,4 +12,10 @@ const UserSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-export default mongoose.models.User || mongoose.model('User', UserSchema);
+export interface IUser extends mongoose.Document {
+    username: string;
+    password: string;
+}
+
+const User: mongoose.Model<IUser> = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
+export default User;

@@ -1,6 +1,6 @@
 import dbConnect from './mongodb';
-import Content from '@/models/Content';
-import { content as initialContent } from '@/app/data/content';
+import Content from '@/app/models/Content';
+import { content as initialContent } from '@/app/Data/content';
 
 /**
  * Fetches content for server-side rendering.

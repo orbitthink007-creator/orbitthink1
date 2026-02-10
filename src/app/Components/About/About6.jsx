@@ -1,7 +1,9 @@
+'use client';
 import Link from "next/link";
-import mainData from '../../../data/main-data.json';
+import { useContent } from "../../context/ContentContext";
 
 const About6 = () => {
+  const { content: mainData } = useContent();
   const { hero } = mainData.aboutPage;
   return (
     <div className="about2 about-page-sec sp">

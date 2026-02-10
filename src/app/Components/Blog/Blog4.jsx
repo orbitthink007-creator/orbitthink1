@@ -1,7 +1,9 @@
+'use client';
 import Link from "next/link";
-import mainData from '../../../data/main-data.json';
+import { useContent } from "../../context/ContentContext";
 
 const Blog4 = () => {
+    const { content: mainData } = useContent();
     const { blog } = mainData.home;
     return (
         <div className="blog4 sp">

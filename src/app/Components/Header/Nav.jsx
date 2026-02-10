@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import DropDown from './DropDown';
-import data from '../../../data/main-data.json';
+import { useContent } from '../../context/ContentContext';
 
 export default function Nav({ setMobileToggle }) {
+  const { content: data } = useContent();
   return (
     <ul className="cs_nav_list fw-medium">
       {data.header.nav.map((item, index) => (

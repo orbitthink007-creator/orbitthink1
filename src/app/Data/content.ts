@@ -150,7 +150,7 @@ export const content = {
       {
         "icon": "/assets/img/icons/footer1-icon4.png",
         "text": "www.OrbitThink.org",
-        "href": "mailto:admin@OrbitThink.org"
+        "href": "https://www.OrbitThink.org"
       }
     ],
     "copyright": "Copyright @2024 OrbitThink.All Rights Reserved",
@@ -363,7 +363,7 @@ export const content = {
         },
         {
           "title": "Premium Plan",
-          "price": "$9.9",
+          "price": "$49.9",
           "monthly": "month",
           "content": "Tailored for larger enterprises with complex IT needs and stringent security.",
           "popularTitle": "",

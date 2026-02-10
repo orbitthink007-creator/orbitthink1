@@ -2,15 +2,28 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { initialContent } from '@/app/data/content';
+import { useRouter } from 'next/navigation';
+import { initialContent } from '@/app/Data/content';
 import { ObjectEditor } from './EditorComponents';
 
 export default function AdminPanel() {
     const [content, setContent] = useState<any>(null);
-    const [activeTab, setActiveTab] = useState('hero');
+    const [activeTab, setActiveTab] = useState('');
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [message, setMessage] = useState('');
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        try {
+            await fetch('/api/auth/logout', { method: 'POST' });
+            router.push('/admin/login');
+        } catch (error) {
+            console.error('Logout failed', error);
+            // Fallback: just redirect
+            router.push('/admin/login');
+        }
+    };
 
     useEffect(() => {
         fetchContent();
@@ -19,13 +32,25 @@ export default function AdminPanel() {
     const fetchContent = async () => {
         try {
             const res = await fetch('/api/content');
-            const data = await res.json();
-            // Ensure we have a valid object, merging with initial if needed to ensure keys exist
-            setContent({ ...initialContent, ...data });
+            if (res.ok) {
+                const data = await res.json();
+                const merged = { ...initialContent, ...data };
+                setContent(merged);
+
+                // If the current active tab is not in the new content keys, set it to the first available tab
+                const availableTabs = Object.keys(merged).filter(k => !['_id', '__v', 'lastUpdated'].includes(k));
+                if (availableTabs.length > 0 && (activeTab === 'hero' || !availableTabs.includes(activeTab))) {
+                    setActiveTab(availableTabs[0]);
+                }
+            } else {
+                setContent(initialContent);
+                setActiveTab(Object.keys(initialContent)[0]);
+            }
         } catch (error) {
             console.error('Failed to load content', error);
             setMessage('Failed to load content. Using defaults.');
             setContent(initialContent);
+            setActiveTab(Object.keys(initialContent)[0]);
         } finally {
             setLoading(false);
         }
@@ -64,18 +89,26 @@ export default function AdminPanel() {
     return (
         <main className="min-h-screen pt-32 pb-20 px-4 md:px-8 bg-[var(--bg-void)] " style={{ marginTop: '80px' }}>
             <div className="container mx-auto max-w-6xl">
-                <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-                    <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-[var(--text-secondary)]">
-                        OrbitControl <span className="text-[var(--accent-cyan)]">Panel</span>
+                <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 border-b border-white/5 pb-8">
+                    <h1 className="text-4xl font-black tracking-tighter text-white">
+                        ORBIT<span className="text-[var(--accent-cyan)] italic">CMS</span>
                     </h1>
 
-                    <button
-                        onClick={handleSave}
-                        disabled={saving}
-                        className={` bg-[var(--accent-cyan)] text-black font-bold py-3 px-20 rounded-full shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_30px_rgba(0,243,255,0.5)] transition-all ${saving ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                        {saving ? 'Transmitting...' : 'Deploy Changes'}
-                    </button>
+                    <div className="flex gap-4">
+                        <button
+                            onClick={handleLogout}
+                            className="bg-white/5 hover:bg-white/10 text-white/70 hover:text-white font-bold py-3 px-8 rounded-xl transition-all border border-white/10 text-sm tracking-widest uppercase"
+                        >
+                            End Session
+                        </button>
+                        <button
+                            onClick={handleSave}
+                            disabled={saving}
+                            className={` bg-[var(--accent-cyan)] text-black font-extrabold py-3 px-12 rounded-xl shadow-[0_0_30px_rgba(0,243,255,0.2)] hover:shadow-[0_0_40px_rgba(0,243,255,0.4)] transition-all text-sm tracking-widest uppercase ${saving ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        >
+                            {saving ? 'Transmitting...' : 'Push Updates'}
+                        </button>
+                    </div>
                 </div>
 
                 {message && (
@@ -87,14 +120,14 @@ export default function AdminPanel() {
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Sidebar / Tabs */}
                     <div className="lg:w-64 flex-shrink-0">
-                        <div className="sticky top-32 glass-card !p-4 flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible">
+                        <div className="sticky top-32 glass-card !p-4  gap-2 overflow-x-auto lg:overflow-visible">
                             {tabs.map(tab => (
                                 <button
                                     key={tab}
                                     onClick={() => setActiveTab(tab)}
-                                    className={`px-4 py-3 rounded-lg text-left transition-all whitespace-nowrap ${activeTab === tab
-                                        ? 'bg-[var(--accent-purple)] text-white shadow-lg'
-                                        : 'text-[var(--text-secondary)] hover:bg-white/5 hover:text-white'
+                                    className={`px-5 py-4 rounded-xl text-left transition-all whitespace-nowrap text-xs font-bold tracking-widest uppercase border ${activeTab === tab
+                                        ? 'bg-[var(--accent-cyan)]/10 text-[var(--accent-cyan)] border-[var(--accent-cyan)] shadow-[0_0_20px_rgba(0,243,255,0.1)]'
+                                        : 'text-white/40 border-transparent hover:text-white hover:bg-white/5'
                                         }`}
                                 >
                                     {tab.charAt(0).toUpperCase() + tab.slice(1)}

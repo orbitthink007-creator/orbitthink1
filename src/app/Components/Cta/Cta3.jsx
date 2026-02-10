@@ -1,6 +1,8 @@
-import mainData from '../../../data/main-data.json';
+'use client';
+import { useContent } from "../../context/ContentContext";
 
 const Cta3 = () => {
+    const { content: mainData } = useContent();
     const { cta } = mainData.home;
     return (
         <div className="cta4">

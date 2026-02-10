@@ -1,6 +1,8 @@
-import mainData from '../../../data/main-data.json';
+'use client';
+import { useContent } from "../../context/ContentContext";
 
 const Team2 = () => {
+  const { content: mainData } = useContent();
   const { team } = mainData.aboutPage;
   return (
     <div className="team3 sp">

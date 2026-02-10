@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // --- Primitive Inputs ---
 
 const Label = ({ label }: { label: string }) => (
-    <label className="block text-xs uppercase tracking-wider text-[var(--accent-cyan)] mb-1 font-semibold">
+    <label className="block text-[10px] uppercase tracking-[0.15em] text-[var(--accent-cyan)] mb-1.5 font-bold opacity-80">
         {label.replace(/([A-Z])/g, ' $1').trim()}
     </label>
 );
@@ -19,7 +19,7 @@ export const TextInput = ({ label, value, onChange }: { label: string, value: st
                 type="text"
                 value={value || ''}
                 onChange={(e) => onChange(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded px-3 py-2 text-sm text-white focus:border-[var(--accent-purple)] focus:outline-none transition-colors"
+                className="w-full bg-[#161b22] border border-white/20 rounded-lg px-4 py-3 text-base text-white focus:border-[var(--accent-cyan)] focus:ring-1 focus:ring-[var(--accent-cyan)] focus:outline-none transition-all placeholder-white/30"
             />
         </div>
     );
@@ -32,8 +32,8 @@ export const TextArea = ({ label, value, onChange }: { label: string, value: str
             <textarea
                 value={value || ''}
                 onChange={(e) => onChange(e.target.value)}
-                rows={4}
-                className="w-full bg-white/5 border border-white/10 rounded px-3 py-2 text-sm text-white focus:border-[var(--accent-purple)] focus:outline-none transition-colors resize-y"
+                rows={6}
+                className="w-full bg-[#161b22] border border-white/20 rounded-lg px-4 py-3 text-base text-white focus:border-[var(--accent-cyan)] focus:ring-1 focus:ring-[var(--accent-cyan)] focus:outline-none transition-all resize-y"
             />
         </div>
     );
@@ -43,16 +43,17 @@ export const ColorInput = ({ label, value, onChange }: { label: string, value: s
     return (
         <div className="mb-4">
             <Label label={label} />
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-4 items-center">
                 <div
-                    className="w-8 h-8 rounded border border-white/20"
-                    style={{ background: value }}
+                    className="w-12 h-12 rounded-lg border-2 border-white/20 shadow-inner"
+                    style={{ background: value || '#000000' }}
                 />
                 <input
                     type="text"
                     value={value || ''}
                     onChange={(e) => onChange(e.target.value)}
-                    className="flex-1 bg-white/5 border border-white/10 rounded px-3 py-2 text-sm text-white focus:border-[var(--accent-purple)] focus:outline-none"
+                    className="flex-1 bg-[#161b22] border border-white/20 rounded-lg px-4 py-3 text-base text-white focus:border-[var(--accent-cyan)] focus:ring-1 focus:ring-[var(--accent-cyan)] focus:outline-none"
+                    placeholder="#000000"
                 />
             </div>
         </div>
@@ -65,10 +66,8 @@ export const ArrayEditor = ({ label, value, onChange }: { label: string, value: 
     const [isExpanded, setIsExpanded] = useState(false);
 
     const addItem = () => {
-        // Infer schema from first item if exists, else empty object or string
         const template = value.length > 0 ? JSON.parse(JSON.stringify(value[0])) : "";
-        // Clean template values
-        if (typeof template === 'object') {
+        if (typeof template === 'object' && template !== null) {
             Object.keys(template).forEach(k => template[k] = "");
         }
         onChange([...value, template]);
@@ -86,10 +85,23 @@ export const ArrayEditor = ({ label, value, onChange }: { label: string, value: 
     };
 
     return (
-        <div className="mb-6 border border-white/10 rounded-lg p-4 bg-white/[0.02]">
-            <div className="flex justify-between items-center mb-2 cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
-                <Label label={`${label} (${value.length})`} />
-                <span className="text-[var(--accent-cyan)] text-lg">{isExpanded ? '−' : '+'}</span>
+        <div className="mb-8 border border-white/10 rounded-xl overflow-hidden bg-white/[0.02] shadow-xl">
+            <div
+                className="flex justify-between items-center px-5 py-4 cursor-pointer bg-white/[0.05] hover:bg-white/[0.08] transition-colors"
+                onClick={() => setIsExpanded(!isExpanded)}
+            >
+                <div className="flex items-center gap-3">
+                    <span className={`transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`}>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 10L7.5 6L4.5 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    </span>
+                    <Label label={`${label} [${value.length}]`} />
+                </div>
+                <button
+                    onClick={(e) => { e.stopPropagation(); addItem(); }}
+                    className="text-[var(--accent-cyan)] text-xs font-bold uppercase tracking-wider hover:underline"
+                >
+                    + Add New
+                </button>
             </div>
 
             <AnimatePresence>
@@ -98,26 +110,29 @@ export const ArrayEditor = ({ label, value, onChange }: { label: string, value: 
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        className="overflow-hidden"
                     >
-                        <div className="flex flex-col gap-4">
+                        <div className="p-5 flex flex-col gap-6 bg-black/20">
                             {value.map((item, i) => (
-                                <div key={i} className="relative pl-4 border-l-2 border-[var(--accent-purple)]/30">
-                                    <button
-                                        onClick={() => removeItem(i)}
-                                        className="absolute right-0 top-0 text-red-400 hover:text-red-300 text-xs px-2 py-1"
-                                    >
-                                        Remove
-                                    </button>
+                                <div key={i} className="relative p-5 rounded-lg border border-white/5 bg-white/[0.02]">
+                                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/5">
+                                        <span className="text-[10px] text-white/40 font-mono">ITEM #{String(i + 1).padStart(2, '0')}</span>
+                                        <button
+                                            onClick={() => removeItem(i)}
+                                            className="text-red-400 hover:text-red-300 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 transition-colors"
+                                        >
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" /></svg>
+                                            Delete
+                                        </button>
+                                    </div>
                                     <ObjectEditor value={item} onChange={(v) => updateItem(i, v)} />
                                 </div>
                             ))}
-                            <button
-                                onClick={addItem}
-                                className="w-full py-2 border border-dashed border-white/20 text-white/50 hover:text-white hover:border-white/50 rounded transition-colors text-sm"
-                            >
-                                + Add {label} Item
-                            </button>
+
+                            {value.length === 0 && (
+                                <div className="text-center py-8 text-white/20 italic text-sm">
+                                    No items in this list
+                                </div>
+                            )}
                         </div>
                     </motion.div>
                 )}
@@ -163,10 +178,12 @@ export const ObjectEditor = ({ value, onChange }: { value: any, onChange: (val: 
                     }
 
                     // If Object (nested)
-                    if (typeof childVal === 'object') {
+                    if (typeof childVal === 'object' && childVal !== null) {
                         return (
-                            <div key={key} className="pl-4 border-l border-white/10 my-4">
-                                <Label label={key} />
+                            <div key={key} className="pl-4 border-l-2 border-white/5 my-6">
+                                <div className="mb-3">
+                                    <Label label={key} />
+                                </div>
                                 <ObjectEditor value={childVal} onChange={updateChild} />
                             </div>
                         );

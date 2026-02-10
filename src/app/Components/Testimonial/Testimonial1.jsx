@@ -1,10 +1,11 @@
 'use client'
 import Slider from "react-slick";
-import mainData from '../../../data/main-data.json';
+import { useContent } from "../../context/ContentContext";
 import SectionTitle from "../Common/SectionTitle";
 import { useRef } from "react";
 
 const Testimonial1 = () => {
+  const { content: mainData } = useContent();
   const { testimonial } = mainData.aboutPage;
   const sliderRef = useRef(null);
 

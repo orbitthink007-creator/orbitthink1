@@ -1,3 +1,4 @@
+'use client'
 import About4 from "../About/About4";
 import Blog4 from "../Blog/Blog4";
 import Cta3 from "../Cta/Cta3";
@@ -7,10 +8,11 @@ import Pricing1 from "../Pricing/Pricing1";
 import Project3 from "../Project/Project3";
 import Services4 from "../Services/Services4";
 import Testimonial3 from "../Testimonial/Testimonial3";
-import mainData from '../../../data/main-data.json';
+import { useContent } from "../../context/ContentContext";
 
 const Home4 = () => {
-    const { hero, about } = mainData.home;
+    const { content } = useContent();
+    const { hero, about } = content.home;
     return (
         <div>
             <HeroBanner4
@@ -22,7 +24,7 @@ const Home4 = () => {
                 btntwo={hero.btnTwo.label}
                 btntwourl={hero.btnTwo.href}
                 shape1={hero.shape1}
-            ></HeroBanner4>
+            />
             <About4
                 image1={about.image1}
                 image2={about.image2}
@@ -36,7 +38,7 @@ const Home4 = () => {
                 featurelist={about.features}
                 btnName={about.btn.label}
                 btnUrl={about.btn.href}
-            ></About4>
+            />
             <Services4></Services4>
             <HowWork3></HowWork3>
             <Project3></Project3>

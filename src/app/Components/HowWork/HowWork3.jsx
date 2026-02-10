@@ -1,12 +1,13 @@
 'use client'
 import Link from 'next/link';
-import mainData from '../../../data/main-data.json';
+import { useContent } from "../../context/ContentContext";
 import SectionTitle2 from '../Common/SectionTitle2';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 const HowWork3 = () => {
+    const { content: mainData } = useContent();
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
     const { process } = mainData.home;

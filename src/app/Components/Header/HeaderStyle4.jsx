@@ -2,9 +2,10 @@
 import { useEffect, useState } from 'react';
 import Nav from './Nav';
 import Link from 'next/link';
-import data from '../../../data/main-data.json';
+import { useContent } from '../../context/ContentContext';
 
 export default function Header4({ variant = '' }) {
+  const { content: data } = useContent();
   const [mobileToggle, setMobileToggle] = useState(false);
   const [isSticky, setIsSticky] = useState('');
   const [prevScrollPos, setPrevScrollPos] = useState(0);

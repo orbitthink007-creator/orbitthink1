@@ -1,7 +1,9 @@
+'use client';
 import Link from "next/link";
-import data from "../../../data/main-data.json";
+import { useContent } from "../../context/ContentContext";
 
 const Footer4 = () => {
+  const { content: data } = useContent();
   const { footer } = data;
   return (
     <div className="footer4 _relative">

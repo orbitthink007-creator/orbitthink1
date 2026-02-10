@@ -1,7 +1,9 @@
+'use client';
 import Link from "next/link";
-import mainData from '../../../data/main-data.json';
+import { useContent } from "../../context/ContentContext";
 
 const Vission1 = () => {
+  const { content: mainData } = useContent();
   const { vision } = mainData.aboutPage;
   return (
     <div className="solution about-solution sp">
