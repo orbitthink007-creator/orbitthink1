@@ -21,8 +21,8 @@ const Project4 = () => {
                                     }} />
                                 </div>
                                 <div className="heading2">
-                                    <h4><Link href="/project/project-details">{item.title}</Link></h4>
-                                    <Link href="/project/project-details" className="learn">Learn More <span><i className="bi bi-arrow-right"></i></span></Link>
+                                    <h4><Link href="#">{item.title}</Link></h4>
+                                    <Link href="#" className="learn">Learn More <span><i className="bi bi-arrow-right"></i></span></Link>
                                 </div>
                             </div>
                         </div>

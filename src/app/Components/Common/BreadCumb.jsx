@@ -1,18 +1,21 @@
 import Link from "next/link";
 
 
-const BreadCumb = ({Title}) => {
-    
-    return (
+const BreadCumb = ({ Title }) => {
 
-      <div className="common-hero" >
+  return (
+
+    <div className="common-hero" >
       <div className="container">
         <div className="row align-items-center text-center">
           <div className="col-lg-6 m-auto">
             <div className="main-heading">
               <h1>{Title}</h1>
-                <div className="space16"></div>
-                <span className="span"><img src="/assets/img/icons/span1.png" alt="" /> <Link href="/">Home</Link><span className="arrow"><i className="bi bi-chevron-right"></i></span> {Title}</span>
+              <div className="space16"></div>
+              <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
+                <img src="/assets/img/logo/loader.png" alt="" style={{ width: '18px', height: '18px', objectFit: 'contain' }} />
+                <a href="/" style={{ color: 'var(--ztc-bg-main-bg-1)', textDecoration: 'underline' }}>Home</a>
+                <span className="arrow"><i className="bi bi-chevron-right"></i></span> {Title}</span>
             </div>
           </div>
 
@@ -20,7 +23,7 @@ const BreadCumb = ({Title}) => {
       </div>
     </div>
 
-    );
+  );
 };
 
 export default BreadCumb;

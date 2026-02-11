@@ -145,7 +145,7 @@ const HeroBanner4 = ({ subtitle, title, content, btnone, btnoneurl, btntwo, btnt
               initial="hidden"
               animate="visible"
             >
-              <img src="/assets/img/hero/hero4-img.png" alt="" width={694} height={542} style={{ objectFit: 'contain' }} />
+              <img src="/assets/img/hero/hero4-img.png" alt="" style={{ objectFit: 'contain', height: '542px', width: '694px' }} />
             </motion.div>
           </div>
         </div>
