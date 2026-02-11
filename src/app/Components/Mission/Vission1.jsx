@@ -14,21 +14,21 @@ const Vission1 = () => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="image">
-                    <img src={vision.images[0]} alt="" />
+                    <img src={vision.images[0]} alt="" style={{ height: '320px', width: '600px', objectFit: 'contain' }} />
                   </div>
                 </div>
 
                 <div className="col-lg-6">
                   <div className="space30"></div>
                   <div className="image">
-                    <img src={vision.images[1]} alt="" />
+                    <img src={vision.images[1]} alt="" style={{ height: '250px', width: '270px', objectFit: 'contain' }} />
                   </div>
                 </div>
 
                 <div className="col-lg-6">
                   <div className="space30"></div>
                   <div className="image">
-                    <img src={vision.images[2]} alt="" />
+                    <img src={vision.images[2]} alt="" style={{ height: '250px', width: '270px', objectFit: 'contain' }} />
                   </div>
                 </div>
 
@@ -37,7 +37,7 @@ const Vission1 = () => {
           </div>
           <div className="col-lg-6">
             <div className="heading1">
-              <span className="span"><img src="/assets/img/icons/span1.png" alt="" /> {vision.subtitle}</span>
+              <span className="span"><img src="/assets/img/logo/loader.png" alt="" style={{ height: '16px', width: '18px' }} /> {vision.subtitle}</span>
               <h2>{vision.title}</h2>
               <div className="space16"></div>
               <p>{vision.content}</p>

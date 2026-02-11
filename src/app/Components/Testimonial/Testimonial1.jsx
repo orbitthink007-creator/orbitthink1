@@ -73,7 +73,7 @@ const Testimonial1 = () => {
                         <p>{item.desc}</p>
                         <div className="bottom-area">
                           <div className="img">
-                            <img src={item.image1} alt="" />
+                            <img src={item.image1} alt="" style={{ height: '78pxpx', width: '80px', objectFit: 'contain' }} />
                           </div>
                           <div className="heading">
                             <h5><a href="#">{item.clientName}</a></h5>
@@ -85,7 +85,7 @@ const Testimonial1 = () => {
 
                     <div className="col-lg-4">
                       <div className="left-side">
-                        <img src={item.image2} alt="" />
+                        <img src={item.image2} alt="" style={{ height: '384px', width: '365px', objectFit: 'contain' }} />
                       </div>
                     </div>
 
