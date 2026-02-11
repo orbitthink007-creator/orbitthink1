@@ -70,14 +70,17 @@ const Services4 = () => {
                                 </div>
                                 <div className="heading4">
                                     <h4 >
-                                        <Link href={item.btnLink}  >
+                                        {/* <Link href={item.btnLink}  >
+                                            {String(item.title)}
+                                        </Link> */}
+                                        <Link href={'#'}  >
                                             {String(item.title)}
                                         </Link>
                                     </h4>
                                     <div className="space16"></div>
                                     <p>{item.desc} </p>
                                     <div className="space16"></div>
-                                    <Link href={item.btnLink} className="learn-btn">Read More <span><i className="bi bi-arrow-right"></i></span></Link>
+                                    <Link href={'#'} className="learn-btn">Read More <span><i className="bi bi-arrow-right"></i></span></Link>
                                 </div>
                             </div>
                         </motion.div>
