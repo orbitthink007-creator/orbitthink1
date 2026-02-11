@@ -17,7 +17,6 @@
   padding: 1.5rem;
 }
 
-
 /*
 ============================
 Name:  OrbitThink Technology & It Solution Template
@@ -9542,7 +9541,7 @@ a.header__search.header-search-btn p {
   right: 0;
   height: 100%;
   width: 50%;
-  background-image: url(/assets/img/others/cta4-image.png);
+  background-image: url("https://clslearn.com/wp-content/uploads/2023/06/project-management-2x.webp");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -10099,7 +10098,7 @@ a.header__search.header-search-btn p {
   right: 0;
   height: 100%;
   width: 50%;
-  background-image: url(/assets/img/others/cta4-image.png);
+  background-image: url("https://clslearn.com/wp-content/uploads/2023/06/project-management-2x.webp");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;

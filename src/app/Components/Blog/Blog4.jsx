@@ -23,7 +23,7 @@ const Blog4 = () => {
                         <div key={index} className="col-lg-6">
                             <div className="blog4-box" data-aos="zoom-in-up" data-aos-duration="900">
                                 <div className="image image-anime">
-                                    <img src={post.image} alt="" />
+                                    <img src={post.image} alt="" width={570} height={410} style={{ objectFit: 'contain', width: '100%', height: 'auto' }} />
                                 </div>
                                 <div className="heading4">
                                     <div className="tags">
