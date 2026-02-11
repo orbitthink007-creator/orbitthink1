@@ -17,7 +17,6 @@
   padding: 1.5rem;
 }
 
-
 /*
 ============================
 Name:  OrbitThink Technology & It Solution Template
@@ -4089,7 +4088,7 @@ a.header__search.header-search-btn p {
   color: #fff;
   transform: translateY(-4px);
   transition: all 0.4s;
-  background-color: #3059ce;
+  background-color: var(--ztc-bg-main-bg-4);
 }
 
 .theme-btn1:hover::after {
@@ -4100,7 +4099,10 @@ a.header__search.header-search-btn p {
 }
 
 .cta-btn1 {
-  display: inline-block;
+  /* display: inline-block; */
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   background-color: var(--ztc-text-text-2);
   border-radius: 5px;
   padding: 16px 20px;
@@ -4142,7 +4144,7 @@ a.header__search.header-search-btn p {
   color: #fff;
   transform: translateY(-4px);
   transition: all 0.4s;
-  background-color: #3059ce;
+  background-color: var(--ztc-bg-main-bg-4);
 }
 
 .cta-btn1:hover::after {
@@ -4153,7 +4155,9 @@ a.header__search.header-search-btn p {
 }
 
 .cta-btn2 {
-  display: inline-block;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   border-radius: 7px;
   padding: 16px 20px;
   color: var(--ztc-text-text-2);
@@ -4163,6 +4167,7 @@ a.header__search.header-search-btn p {
   z-index: 1;
   transition: all 0.4s;
   margin-left: 20px;
+  margin-top: 10px;
   border: 1px solid var(--ztc-text-text-2);
 }
 
@@ -4203,8 +4208,8 @@ a.header__search.header-search-btn p {
   color: #fff;
   transform: translateY(-4px);
   transition: all 0.4s;
-  background-color: #3059ce;
-  border: 1px solid #3059ce;
+  background-color: var(--ztc-bg-main-bg-4);
+  border: 1px solid var(--ztc-bg-main-bg-4);
 }
 
 .cta-btn2:hover::after {
@@ -7641,7 +7646,10 @@ a.header__search.header-search-btn p {
   text-align: center;
   line-height: 80px;
   border-radius: 50%;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.4s;
 }
 
@@ -9542,7 +9550,7 @@ a.header__search.header-search-btn p {
   right: 0;
   height: 100%;
   width: 50%;
-  background-image: url(/assets/img/others/cta4-image.png);
+  background-image: url("https://clslearn.com/wp-content/uploads/2023/06/project-management-2x.webp");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -10099,7 +10107,7 @@ a.header__search.header-search-btn p {
   right: 0;
   height: 100%;
   width: 50%;
-  background-image: url(/assets/img/others/cta4-image.png);
+  background-image: url("https://clslearn.com/wp-content/uploads/2023/06/project-management-2x.webp");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -13747,7 +13755,7 @@ a.header__search.header-search-btn p {
 
   .marquee-text {
     font-size: 60px;
-    line-height: 67px;
+    line-height: 30px;
     animation: marquee 10s linear infinite;
   }
 
@@ -13885,7 +13893,7 @@ a.header__search.header-search-btn p {
   font-size: 100px;
   width: 100%;
   white-space: nowrap;
-  line-height: 67px;
+  line-height: 30px;
   font-weight: 600;
   font-family: var(--theme-typography-secondory-font-family);
   color: var(--theme-white-color);
@@ -28473,7 +28481,7 @@ li.has-dropdown1 span {
   }
 
   .cs_nav .cs_nav_list > li.menu-item-has-children > a::after {
-    content: "\f282";
+    /* content: "\f282"; */
     font-family: bootstrap-icons;
     font-weight: 900;
     display: inline-block;

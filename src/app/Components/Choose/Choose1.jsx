@@ -20,7 +20,7 @@ const Choose1 = () => {
         <div className="row align-items-center">
           <div className="col-lg-6">
             <div className="heading1">
-              <span className="span" data-aos="zoom-in-left" data-aos-duration="700"><img src="/assets/img/icons/span1.png" alt="" />{mainContent.subTitle}</span>
+              <span className="span" data-aos="zoom-in-left" data-aos-duration="700"><img src="/assets/img/logo/loader.png" alt="" style={{ height: '16px', width: '18px' }} />{mainContent.subTitle}</span>
               <h2 className="title tg-element-title">{mainContent.title}</h2>
               <div className="space16"></div>
               <p data-aos="fade-right" data-aos-duration="700">{mainContent.Content}</p>

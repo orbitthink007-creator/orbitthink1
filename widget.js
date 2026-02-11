@@ -7,7 +7,7 @@
     //     ? "http://localhost:8000/api/chat"
     //     : "https://mehmaaaaaaaam-chatbot.hf.space/api/chat";
     const API_URL = "https://mehmaaaaaaaam-chatbot.hf.space/api/chat";
-    const THEME_COLOR = "#6d28d9";
+    const THEME_COLOR = "#932eb0";
 
     // Create Styles
     const style = document.createElement('style');
@@ -24,7 +24,7 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, ${THEME_COLOR}, #4c1d95);
+            background: linear-gradient(135deg, ${THEME_COLOR}, #4311af);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             cursor: pointer;
             display: flex;
@@ -125,6 +125,45 @@
             color: ${THEME_COLOR};
             cursor: pointer;
         }
+
+        /* Typing Indicator */
+        .orbit-typing {
+            display: flex;
+            gap: 4px;
+            padding: 10px 14px;
+            background: #f3f4f6;
+            border-radius: 10px;
+            align-self: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .orbit-typing span {
+            width: 6px;
+            height: 6px;
+            background: #9ca3af;
+            border-radius: 50%;
+            animation: orbit-typing-bounce 1.4s infinite ease-in-out;
+        }
+
+        .orbit-typing span:nth-child(2) { animation-delay: 0.2s; }
+        .orbit-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes orbit-typing-bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-6px); }
+        }
+
+        @media screen and (max-width: 480px) {
+            .orbit-chat-widget-container {
+                right: 10px;
+                bottom: 10px;
+            }
+            .orbit-chat-window {
+                width: calc(100vw - 20px);
+                height: calc(80vh);
+                bottom: 70px;
+            }
+        }
     `;
     document.head.appendChild(style);
 
@@ -204,6 +243,13 @@
         inputEl.disabled = true;
         sendBtn.disabled = true;
 
+        // Show typing indicator
+        const typingEl = document.createElement('div');
+        typingEl.className = 'orbit-typing';
+        typingEl.innerHTML = '<span></span><span></span><span></span>';
+        messagesEl.appendChild(typingEl);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+
         try {
             const res = await fetch(API_URL, {
                 method: 'POST',
@@ -212,8 +258,11 @@
             });
 
             const data = await res.json();
+            // Remove typing indicator before adding response
+            if (typingEl.parentNode) typingEl.parentNode.removeChild(typingEl);
             addMessage(data.response || "Something went wrong.", 'bot');
         } catch {
+            if (typingEl.parentNode) typingEl.parentNode.removeChild(typingEl);
             addMessage("Server error. Please try again.", 'bot');
         } finally {
             inputEl.disabled = false;

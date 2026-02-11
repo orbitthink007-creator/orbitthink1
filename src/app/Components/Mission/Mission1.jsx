@@ -12,7 +12,7 @@ const Mission1 = () => {
         <div className="row align-items-center">
           <div className="col-lg-6">
             <div className="heading1">
-              <span className="span"><img src="/assets/img/icons/span1.png" alt="" /> {mission.subtitle}</span>
+              <span className="span"><img src="/assets/img/logo/loader.png" alt="" style={{ height: '16px', width: '18px' }} /> {mission.subtitle}</span>
               <h2>{mission.title}</h2>
               <div className="space16"></div>
               <p>{mission.content1}</p>
@@ -29,13 +29,13 @@ const Mission1 = () => {
           <div className="col-lg-6">
             <div className="solution-images">
               <div className="image1">
-                <img src={mission.images[0]} alt="" />
+                <img src={mission.images[0]} alt="" style={{ height: '134px', width: '178px', objectFit: 'fill' }} />
               </div>
               <div className="image2">
-                <img src={mission.images[1]} alt="" />
+                <img src={mission.images[1]} alt="" style={{ height: '400px', width: '470px', objectFit: 'fill' }} />
               </div>
               <div className="image3">
-                <img src={mission.images[2]} alt="" />
+                <img src={mission.images[2]} alt="" style={{ height: '134px', width: '178px', objectFit: 'fill' }} />
               </div>
             </div>
           </div>

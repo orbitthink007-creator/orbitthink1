@@ -1,6 +1,6 @@
 'use client'
 import Slider from "react-slick";
-import mainData from '../../../data/main-data.json';
+import { useContent } from "../../context/ContentContext";
 import { useEffect, useRef } from "react";
 import SectionTitle2 from "../Common/SectionTitle2";
 import loadBackgroudImages from "../Common/loadBackgroudImages";
@@ -8,7 +8,8 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 
 const Testimonial3 = () => {
-  const { testimonials } = mainData.home;
+  const { content } = useContent();
+  const { testimonials } = content.home;
   const sliderRef = useRef(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -54,6 +55,7 @@ const Testimonial3 = () => {
     loadBackgroudImages();
   }, []);
 
+  console.log("testimonials.list", testimonials.list)
   return (
     <div className="testimonial4 testimonial-2 position-relative bg6 section-padding" data-background="/assets/img/bg/testimonial4-bg.png" ref={ref}>
       <div className="container">
@@ -89,7 +91,7 @@ const Testimonial3 = () => {
                   {testimonials.list.map((item, i) => (
                     <div key={i} className="single-testimonial">
                       <div className="single-testimonial-nav">
-                        <img src={item.icon} alt="" />
+                        <img src={item.icon} alt="" style={{ objectFit: 'contain', height: '100px', width: '80px' }} />
                       </div>
                       <h5>{item.desc}</h5>
                       <div className="author">

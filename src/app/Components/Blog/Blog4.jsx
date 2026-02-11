@@ -23,18 +23,20 @@ const Blog4 = () => {
                         <div key={index} className="col-lg-6">
                             <div className="blog4-box" data-aos="zoom-in-up" data-aos-duration="900">
                                 <div className="image image-anime">
-                                    <img src={post.image} alt="" />
+                                    <img src={post.image} alt="" width={570} height={410} style={{ objectFit: 'contain', width: '100%', height: 'auto' }} />
                                 </div>
                                 <div className="heading4">
                                     <div className="tags">
                                         <a href="#" className="date"><img src="/assets/img/icons/date3.png" alt="" /> {post.date}</a>
                                         <a href="#" className="date outhor"><img src="/assets/img/icons/blog-icon1.png" alt="" /> {post.author}</a>
                                     </div>
-                                    <h3><Link href={post.url}>{post.title}</Link></h3>
+                                    {/* <h3><Link href={post.url}>{post.title}</Link></h3> */}
+                                    <h3><Link href={'#'}>{post.title}</Link></h3>
                                     <div className="space16"></div>
                                     <p>{post.desc}</p>
                                     <div className="space16"></div>
-                                    <Link href={post.url} className="learn">{post.readMore} <span><i className="bi bi-arrow-right"></i></span></Link>
+                                    {/* <Link href={post.url} className="learn">{post.readMore} <span><i className="bi bi-arrow-right"></i></span></Link> */}
+                                    <Link href={'#'} className="learn">{post.readMore} <span><i className="bi bi-arrow-right"></i></span></Link>
                                 </div>
                             </div>
                         </div>

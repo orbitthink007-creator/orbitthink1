@@ -64,10 +64,15 @@ const Project3 = () => {
                         <motion.div key={i} className={item.addClass} variants={cardVariants}>
                             <div className={item.addClassActive}>
                                 <div className="image">
-                                    <img src={item.icon} alt="" />
+                                    <img
+                                        src={item.icon}
+                                        alt=""
+                                        style={{ objectFit: 'cover', width: item.addClass.includes('col-lg-8') ? 770 : 370, height: '350px' }}
+                                    />
                                 </div>
                                 <div className="heading4-w">
-                                    <h4><Link href={item.btnLink}>{item.title}</Link></h4>
+                                    {/* <h4><Link href={item.btnLink}>{item.title}</Link></h4> */}
+                                    <h4><Link href={'#'}>{item.title}</Link></h4>
                                     <div className="space10"></div>
                                     <p dangerouslySetInnerHTML={{ __html: item.desc }}></p>
                                 </div>

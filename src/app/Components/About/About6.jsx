@@ -12,13 +12,13 @@ const About6 = () => {
           <div className="col-lg-6">
             <div className="about2-images">
               <div className="image1" data-aos="zoom-in-right" data-aos-duration="800">
-                <img src={hero.image1} alt="" />
+                <img src={hero.image1} alt="" style={{ height: '134px', width: '178px', objectFit: 'fill' }} />
               </div>
               <div className="image2 image-anime">
-                <img src={hero.image2} alt="" />
+                <img src={hero.image2} alt="" style={{ height: '400px', width: '470px', objectFit: 'fill' }} />
               </div>
               <div className="image3" data-aos="zoom-in-left" data-aos-duration="900">
-                <img src={hero.image3} alt="" />
+                <img src={hero.image3} alt="" style={{ height: '134px', width: '178px', objectFit: 'fill' }} />
               </div>
               <div className="counter-box" data-aos="flip-left" data-aos-duration="700">
                 <h3>{hero.experienceNum}</h3>
@@ -29,7 +29,9 @@ const About6 = () => {
 
           <div className="col-lg-6">
             <div className="heading1">
-              <span className="span" data-aos="zoom-in-left" data-aos-duration="700"><img src="/assets/img/icons/span1.png" alt="" /> {hero.subTitle}</span>
+              <span style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', gap: '10px' }}
+                data-aos="zoom-in-left" data-aos-duration="700">
+                <img src="/assets/img/logo/loader.png" alt="" style={{ height: '16px', width: '18px' }} /> {hero.subTitle}</span>
               <h2 className="title tg-element-title">{hero.title}</h2>
               <div className="space16"></div>
               <p data-aos="fade-up-left" data-aos-duration="700">{hero.content}</p>
