@@ -30,11 +30,13 @@ const Blog4 = () => {
                                         <a href="#" className="date"><img src="/assets/img/icons/date3.png" alt="" /> {post.date}</a>
                                         <a href="#" className="date outhor"><img src="/assets/img/icons/blog-icon1.png" alt="" /> {post.author}</a>
                                     </div>
-                                    <h3><Link href={post.url}>{post.title}</Link></h3>
+                                    {/* <h3><Link href={post.url}>{post.title}</Link></h3> */}
+                                    <h3><Link href={'#'}>{post.title}</Link></h3>
                                     <div className="space16"></div>
                                     <p>{post.desc}</p>
                                     <div className="space16"></div>
-                                    <Link href={post.url} className="learn">{post.readMore} <span><i className="bi bi-arrow-right"></i></span></Link>
+                                    {/* <Link href={post.url} className="learn">{post.readMore} <span><i className="bi bi-arrow-right"></i></span></Link> */}
+                                    <Link href={'#'} className="learn">{post.readMore} <span><i className="bi bi-arrow-right"></i></span></Link>
                                 </div>
                             </div>
                         </div>

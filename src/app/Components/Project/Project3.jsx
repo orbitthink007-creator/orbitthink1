@@ -71,7 +71,8 @@ const Project3 = () => {
                                     />
                                 </div>
                                 <div className="heading4-w">
-                                    <h4><Link href={item.btnLink}>{item.title}</Link></h4>
+                                    {/* <h4><Link href={item.btnLink}>{item.title}</Link></h4> */}
+                                    <h4><Link href={'#'}>{item.title}</Link></h4>
                                     <div className="space10"></div>
                                     <p dangerouslySetInnerHTML={{ __html: item.desc }}></p>
                                 </div>
