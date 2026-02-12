@@ -83,6 +83,7 @@ const DynamicLine = () => {
                         strokeWidth="40"
                         fill="transparent"
                         strokeLinecap="round"
+                        className="opacity-10"
                     />
                 </svg>
             </div>

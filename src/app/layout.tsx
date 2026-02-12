@@ -10,6 +10,8 @@ import Footer4 from './Components/Footer/Footer4';
 import SmoothScroll from './Components/SmoothScroll';
 import { ContentProvider } from './context/ContentContext';
 import { getDynamicContent } from './lib/data';
+import BgType2 from "./ai-bg/BgType2";
+import BgWater from "./ai-bg/BgWater";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +29,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
+          {/* <BgType2 width="100vw" height="100vh" /> */}
+          <BgWater width="100vw" height="100vh" />
+        </div>
         <ContentProvider initialData={initialContent}>
           <Header4 />
           {/* <SmoothScroll> */}

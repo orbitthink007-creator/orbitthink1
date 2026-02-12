@@ -2,6 +2,15 @@
 import Link from "next/link";
 import Slider from "react-slick";
 import { motion } from 'framer-motion';
+// import Bg3D_4 from "@/app/ai-bg/3d/Bg3D_4";
+
+
+import dynamic from "next/dynamic";
+const Bg3D_4 = dynamic(() => import("@/app/ai-bg/3d/Bg3D_4"), {
+  loading: () => <p>Loading component...</p>,
+  ssr: false // Optional: use if component relies on browser-specific APIs
+});
+
 
 const HeroBanner4 = ({ subtitle, title, content, btnone, btnoneurl, btntwo, btntwourl, shape1 }) => {
 
@@ -136,6 +145,9 @@ const HeroBanner4 = ({ subtitle, title, content, btnone, btnoneurl, btntwo, btnt
                 }}
               />
             </motion.div>
+            {/* <Bg3D_4
+              width={300} height={300}
+            /> */}
           </div>
 
           <div className="col-lg-6">

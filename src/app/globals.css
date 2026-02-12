@@ -13271,18 +13271,18 @@ a.header__search.header-search-btn p {
 
 .hero4 .main-heading .slider-area {
   margin-top: 150px;
-  margin-right: 60px;
+  /* margin-right: 60px; */
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .hero4 .main-heading .slider-area {
-    margin-top: 220px;
+    margin-top: 150px;
   }
 }
 
 @media (max-width: 767px) {
   .hero4 .main-heading .slider-area {
-    margin-top: 240px;
+    margin-top: 120px;
   }
 }
 
