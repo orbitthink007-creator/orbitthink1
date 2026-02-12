@@ -7,6 +7,7 @@ import "./globals.css";
 import Script from "next/script";
 import Header4 from './Components/Header/HeaderStyle4';
 import Footer4 from './Components/Footer/Footer4';
+import SmoothScroll from './Components/SmoothScroll';
 import { ContentProvider } from './context/ContentContext';
 import { getDynamicContent } from './lib/data';
 
@@ -28,7 +29,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className={inter.className}>
         <ContentProvider initialData={initialContent}>
           <Header4 />
+          {/* <SmoothScroll> */}
           {children}
+          {/* </SmoothScroll> */}
           <Footer4 />
         </ContentProvider>
 
