@@ -1,75 +1,71 @@
-'use client';
+﻿'use client';
 
 import { motion } from 'framer-motion';
 
-export default function Process({ content }: { content: any }) {
-    // Fallback content
-    const processContent = content || {
-        title: "Mission Trajectory",
-        steps: [
-            {
-                number: "01",
-                title: "Ignition",
-                description: "We analyze your data landscape and identify high-impact AI opportunities.",
-                color: "var(--accent-cyan)",
-                shadow: "rgba(0, 243, 255, 0.3)"
-            },
-            {
-                number: "02",
-                title: "Orbit",
-                description: "Our engineers build and train custom models tailored to your specific parameters.",
-                color: "var(--accent-purple)",
-                shadow: "rgba(188, 19, 254, 0.3)"
-            },
-            {
-                number: "03",
-                title: "Velocity",
-                description: "Deploy, monitor, and scale. We ensure your AI solution reaches escape velocity.",
-                color: "var(--accent-pink)",
-                shadow: "rgba(255, 0, 85, 0.3)"
-            }
-        ]
-    };
+export default function Process({ content }: { content?: any }) {
+    const defaultSteps = [
+        {
+            number: "01",
+            title: "Architecture & Ignition",
+            description: "Deep audit of data workflows, technical risks, and architectural constraints to blueprint scalable systems."
+        },
+        {
+            number: "02",
+            title: "Neural & Core Engineering",
+            description: "Agile, milestone-driven development of custom models, frontend UI pipelines, and low-latency servers."
+        },
+        {
+            number: "03",
+            title: "Velocity & Deployment",
+            description: "CI/CD automated rollout, penetration testing, performance benchmarking, and global edge acceleration."
+        }
+    ];
+
+    const steps = content?.steps || defaultSteps;
 
     return (
-        <section id="process" className="section relative bg-white">
-            <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(var(--accent-primary) 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}></div>
-            <div className="container relative z-10">
-                <div className="text-center mb-20">
-                    <span className="inline-block px-4 py-1 rounded-full border border-[var(--accent-primary)] text-[var(--accent-primary)] text-[10px] font-black mb-6 bg-[var(--accent-primary)]/5 uppercase tracking-[0.2em]">
-                        HOW WE WORK
-                    </span>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-5xl md:text-6xl font-extrabold mb-6"
-                    >
-                        Mission <span className="text-[var(--accent-primary)]">Trajectory</span>
-                    </motion.h2>
+        <section id="process" className="py-28 md:py-40 px-6 md:px-14 bg-[#09090b] text-white border-b border-white/10 relative overflow-hidden">
+            <div className="max-w-6xl mx-auto">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-20">
+                    <div>
+                        <span className="flex items-center gap-3 text-[10px] font-black tracking-[0.3em] uppercase text-[#00CD58] mb-4">
+                            <span className="w-6 h-px bg-[#00CD58]" />
+                            METHODOLOGY & EXECUTION
+                        </span>
+                        <h2 className="text-[clamp(36px,5.5vw,78px)] font-black tracking-[-0.04em] leading-[0.92] uppercase">
+                            Mission <span className="text-[#00CD58]">Trajectory.</span>
+                        </h2>
+                    </div>
+                    <p className="max-w-md text-sm md:text-base text-[#a1a1aa] font-light leading-relaxed">
+                        A rigorous 3-stage delivery framework engineered to eliminate technical debt and guarantee velocity.
+                    </p>
                 </div>
-                <div className="process-container">
-                    {processContent.steps && processContent.steps.map((step: any, index: number) => (
-                        <div key={index} style={{ display: 'contents' }}>
-                            <motion.div
-                                className="process-step !max-w-xs"
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: index * 0.1 }}
-                            >
-                                <div className="w-24 h-24 rounded-[2rem] border-2 border-[var(--accent-primary)] flex items-center justify-center mx-auto mb-8 bg-white shadow-xl shadow-emerald-500/10 group rotate-45 transform hover:rotate-0 transition-transform duration-500">
-                                    <span className="text-3xl font-black text-[var(--accent-primary)] -rotate-45 group-hover:rotate-0 transition-transform duration-500">{step.number}</span>
-                                </div>
-                                <h3 className="text-2xl font-extrabold mb-4 text-[var(--text-primary)] tracking-tight">{step.title}</h3>
-                                <p className="text-[var(--text-secondary)] leading-relaxed font-medium opacity-80">{step.description}</p>
-                            </motion.div>
 
-                            {/* Connector (don't show after last item) */}
-                            {index < processContent.steps.length - 1 && (
-                                <div className="step-connector !bg-emerald-500/20"></div>
-                            )}
-                        </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                    {steps.map((step: any, index: number) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.7, delay: index * 0.15 }}
+                            className="p-8 md:p-10 rounded-3xl bg-[#111113] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between min-h-[300px]"
+                        >
+                            <div>
+                                <span className="text-3xl md:text-4xl font-mono font-black text-[#00CD58] block mb-8">
+                                    {step.number || `0${index + 1}`}
+                                </span>
+                                <h3 className="text-xl md:text-2xl font-black tracking-tight mb-4 text-white">
+                                    {step.title}
+                                </h3>
+                                <p className="text-sm text-[#a1a1aa] font-light leading-relaxed">
+                                    {step.description}
+                                </p>
+                            </div>
+                            <div className="mt-8 pt-6 border-t border-white/10 text-[10px] font-mono tracking-widest text-[#71717a] uppercase">
+                                Stage // 0{index + 1}
+                            </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>

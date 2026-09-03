@@ -1,19 +1,22 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function RegisterPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [submitting, setSubmitting] = useState(false);
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
+        setSubmitting(true);
 
         try {
             const res = await fetch('/api/auth/register', {
@@ -27,66 +30,96 @@ export default function RegisterPage() {
             if (res.ok) {
                 router.push('/admin/login');
             } else {
-                setError(data.error || 'Registration failed');
+                setError(data.error || 'Registration failed.');
             }
         } catch (err) {
-            setError('An error occurred');
+            setError('An error occurred during registration.');
+        } finally {
+            setSubmitting(false);
         }
     };
 
     return (
-        <main className="min-h-screen flex items-center justify-center bg-[var(--bg-void)] px-4">
+        <main className="min-h-screen flex items-center justify-center bg-[#09090b] text-white px-4 py-20 relative overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] rounded-full bg-[#00CD58]/[0.05] blur-[160px]" />
+            </div>
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="glass-card w-full max-w-md p-8"
+                className="w-full max-w-md p-8 md:p-10 rounded-3xl bg-[#141417] border border-white/10 shadow-[0_20px_70px_rgba(0,0,0,0.8)] relative z-10"
             >
-                <h1 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[var(--accent-purple)] to-[var(--accent-pink)]">
-                    Create Admin
-                </h1>
+                <div className="text-center mb-8">
+                    <div className="flex justify-center mb-4">
+                        <Image
+                            src="/images/orbitthink-logo-white.svg"
+                            alt="OrbitThink Logo"
+                            width={160}
+                            height={36}
+                            className="h-8 w-auto"
+                        />
+                    </div>
+                    <span className="text-[10px] font-mono tracking-[0.24em] uppercase text-[#00CD58] block mb-1">
+                        USER PROVISIONING
+                    </span>
+                    <h1 className="text-2xl font-black uppercase tracking-tight text-white">
+                        Create Admin Account
+                    </h1>
+                </div>
 
                 {error && (
-                    <div className="bg-red-500/10 border border-red-500/50 text-red-200 p-3 rounded mb-4 text-sm text-center">
+                    <div className="bg-red-500/10 border border-red-500/30 text-red-300 p-3.5 rounded-2xl mb-6 text-xs font-mono text-center">
                         {error}
                     </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
-                        <label className="block text-sm text-[var(--text-secondary)] mb-2">Username</label>
+                        <label className="block text-[10px] font-mono font-bold uppercase tracking-widest text-[#a1a1aa] mb-2">
+                            Username
+                        </label>
                         <input
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-[var(--accent-purple)] transition-colors"
-                            placeholder="NewAdmin"
+                            className="w-full bg-[#0d0d0f] border border-white/10 rounded-2xl px-5 py-3.5 text-sm text-white focus:border-[#00CD58] outline-none transition-colors"
+                            placeholder="newadmin"
+                            required
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm text-[var(--text-secondary)] mb-2">Password</label>
+                        <label className="block text-[10px] font-mono font-bold uppercase tracking-widest text-[#a1a1aa] mb-2">
+                            Password
+                        </label>
                         <input
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-[var(--accent-purple)] transition-colors"
+                            className="w-full bg-[#0d0d0f] border border-white/10 rounded-2xl px-5 py-3.5 text-sm text-white focus:border-[#00CD58] outline-none transition-colors"
                             placeholder="••••••••"
+                            required
                         />
                     </div>
 
                     <button
                         type="submit"
-                        className="w-full bg-[var(--accent-purple)] text-white font-bold py-3 rounded-lg shadow-[0_0_20px_rgba(188,19,254,0.3)] hover:shadow-[0_0_30px_rgba(188,19,254,0.5)] transition-all"
+                        disabled={submitting}
+                        className="w-full py-4 rounded-full bg-[#00CD58] text-[#0a0a0a] text-xs font-black uppercase tracking-[0.22em] transition-all hover:bg-[#00e362] hover:shadow-[0_0_30px_rgba(0,205,88,0.4)] disabled:opacity-50"
                     >
-                        Register User
+                        {submitting ? 'Registering...' : 'Provision User ↗'}
                     </button>
-
-                    <div className="text-center mt-4">
-                        <Link href="/admin/login" className="text-sm text-[var(--text-secondary)] hover:text-white transition-colors">
-                            Already have an account? Login
-                        </Link>
-                    </div>
                 </form>
+
+                <div className="mt-8 pt-6 border-t border-white/10 text-center flex flex-col gap-2">
+                    <Link href="/admin/login" className="text-xs font-mono text-[#00CD58] hover:underline">
+                        Already have credentials? Log in
+                    </Link>
+                    <Link href="/" className="text-xs font-mono text-[#71717a] hover:text-white transition-colors">
+                        ← Back to OrbitThink live site
+                    </Link>
+                </div>
             </motion.div>
         </main>
     );

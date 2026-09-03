@@ -1,122 +1,106 @@
-'use client';
+﻿'use client';
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-export default function AboutClient({ content }: { content: any }) {
-    // Fallback if content is missing (e.g. initial load or error)
+export default function AboutClient({ content }: { content?: any }) {
     const about = content?.about || {
         tag: "Who We Are",
-        title: "Innovative Solutions",
-        titleAccent: "For Your Business",
-        missionTitle: "Our Mission",
-        missionText: "Loading...",
-        teamTitle: "Our Capabilities",
-        team: [],
-        cta: "Ready to Transform Your Ideas?",
-        ctaText: "Let's discuss how we can help your business grow"
+        title: "Defying The Laws",
+        titleAccent: "Of Software",
+        missionTitle: "OUR CODEBASE PRINCIPLES",
+        missionText: "We engineer systems where speed, resilience, and visual craftsmanship converge without compromise.",
+        team: []
     };
 
+    const principles = [
+        {
+            num: "01",
+            title: "Performance First",
+            desc: "Every interaction is tuned for sub-second response, from database query plan to frontend hydration."
+        },
+        {
+            num: "02",
+            title: "Production Reality",
+            desc: "We don't ship experiments that fail under enterprise stress. Everything is battle-tested."
+        },
+        {
+            num: "03",
+            title: "Precision Aesthetics",
+            desc: "Swiss typography and brutalist clarity ensure your product stands out from noisy competitors."
+        },
+        {
+            num: "04",
+            title: "Full-Stack Velocity",
+            desc: "Cross-functional mastery eliminates agency overhead, letting you ship months ahead of schedule."
+        }
+    ];
+
     return (
-        <div className="bg-[var(--bg-void)]">
-            <section className="relative min-h-[60vh] flex items-center pt-48 pb-24 overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-full bg-emerald-500/5 rounded-full blur-[120px] -z-10 translate-y-[-50%]"></div>
-                <div className="container relative z-10 text-center">
-                    <motion.span
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="inline-block px-5 py-2 rounded-full border border-[var(--accent-primary)] text-[var(--accent-primary)] text-[11px] font-black mb-10 bg-[var(--accent-primary)]/5 uppercase tracking-[0.2em]"
-                    >
-                        {about.tag}
-                    </motion.span>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-6xl md:text-9xl font-extrabold mb-10 text-[var(--text-primary)] tracking-tighter leading-[0.8]"
-                    >
-                        {about.title}<span className="text-[var(--accent-primary)] block mt-4">{about.titleAccent}</span>
-                    </motion.h1>
+        <div className="bg-[#09090b] text-white min-h-screen pt-36 pb-28 px-6 md:px-14">
+            <div className="max-w-6xl mx-auto">
+                <div className="max-w-4xl mb-24">
+                    <span className="flex items-center gap-3 text-[10px] font-black tracking-[0.3em] uppercase text-[#00CD58] mb-4">
+                        <span className="w-6 h-px bg-[#00CD58]" />
+                        ABOUT ORBITTHINK
+                    </span>
+                    <h1 className="text-[clamp(44px,7vw,98px)] font-black tracking-[-0.04em] leading-[0.92] uppercase mb-8">
+                        The Engineers Behind <br />
+                        <span className="text-[#00CD58]">The Impossible.</span>
+                    </h1>
+                    <p className="text-lg md:text-xl text-[#a1a1aa] font-light leading-relaxed">
+                        OrbitThink was assembled to solve the engineering and digital bottlenecks that prevent modern companies from reaching scale. We build foundational AI, scalable web platforms, and mobile apps.
+                    </p>
                 </div>
-            </section>
 
-            <section className="section py-32 bg-gray-50/30">
-                <div className="container px-6 md:px-8">
-                    <motion.div
-                        className="bg-white border border-gray-100 rounded-[4rem] p-16 md:p-32 shadow-2xl shadow-emerald-500/5 text-center max-w-6xl mx-auto relative overflow-hidden"
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1 }}
-                    >
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-[var(--accent-primary)]"></div>
-                        <h2 className="text-[12px] font-black uppercase tracking-[0.3em] text-[var(--accent-primary)] mb-12">{about.missionTitle}</h2>
-                        <p className="text-2xl md:text-3xl text-[var(--text-secondary)] leading-tight font-extrabold tracking-tight">
-                            "{about.missionText}"
-                        </p>
-                    </motion.div>
+                <div className="p-10 md:p-16 rounded-3xl bg-[#141417] border border-white/10 mb-24">
+                    <span className="text-[10px] font-mono tracking-widest uppercase text-[#00CD58] block mb-4">
+                        {about.missionTitle || "OUR MISSION STATEMENT"}
+                    </span>
+                    <p className="text-2xl md:text-4xl font-extrabold tracking-tight text-white leading-snug">
+                        "{about.missionText}"
+                    </p>
                 </div>
-            </section>
 
-            <section className="section py-40">
-                <div className="container px-6 md:px-8">
-                    <div className="text-center mb-24">
-                        <span className="text-[12px] font-black uppercase tracking-[0.3em] text-[var(--accent-secondary)] opacity-30 mb-6 block">CAPABILITIES</span>
-                        <motion.h2
-                            className="text-5xl md:text-6xl font-black tracking-tighter"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            {about.teamTitle}
-                        </motion.h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-                        {about.team.map((member: any, index: number) => (
+                <div className="mb-24">
+                    <h2 className="text-xs font-black uppercase tracking-[0.24em] text-[#71717a] mb-8">
+                        CORE ENGINEERING PRINCIPLES
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {principles.map((p, i) => (
                             <motion.div
-                                key={index}
-                                className="bg-white border border-gray-100 p-12 rounded-[3.5rem] text-center hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 group flex flex-col"
-                                initial={{ opacity: 0, y: 30 }}
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: index * 0.1 }}
+                                transition={{ delay: i * 0.1 }}
+                                className="p-8 rounded-3xl bg-[#111113] border border-white/10"
                             >
-                                <div className="w-24 h-24 bg-gray-50 rounded-3xl mx-auto mb-10 flex items-center justify-center text-5xl grayscale group-hover:grayscale-0 group-hover:bg-[var(--accent-primary)]/10 group-hover:rotate-6 transition-all duration-500">
-                                    {member.icon}
-                                </div>
-                                <h3 className="text-2xl font-black mb-6 text-[var(--text-primary)] tracking-tight">{member.role}</h3>
-                                <p className="text-[var(--text-secondary)] leading-relaxed font-medium opacity-80">{member.desc}</p>
+                                <span className="text-xl font-mono font-bold text-[#00CD58] block mb-4">{p.num}</span>
+                                <h3 className="text-xl font-bold tracking-tight mb-2 text-white">{p.title}</h3>
+                                <p className="text-sm text-[#a1a1aa] font-light leading-relaxed">{p.desc}</p>
                             </motion.div>
                         ))}
                     </div>
                 </div>
-            </section>
 
-            <section className="section pb-48">
-                <div className="container px-6 md:px-8">
-                    <motion.div
-                        className="bg-[var(--accent-secondary)] rounded-[4rem] p-16 md:p-32 text-center relative overflow-hidden shadow-2xl"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1 }}
+                <div className="p-12 md:p-20 rounded-3xl bg-gradient-to-br from-[#141417] to-[#0d0d0f] border border-[#00CD58]/30 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div>
+                        <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white mb-2">
+                            Ready to build something iconic?
+                        </h3>
+                        <p className="text-sm text-[#a1a1aa] font-light">
+                            Direct line to our technical directors. No sales intermediaries.
+                        </p>
+                    </div>
+                    <Link
+                        href="/contact"
+                        className="px-8 py-4 rounded-full bg-[#00CD58] text-[#0a0a0a] text-xs font-black uppercase tracking-[0.2em] transition-all hover:bg-[#00e362] shrink-0"
                     >
-                        <div className="absolute -top-20 -right-20 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-                        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-[var(--accent-primary)]/10 rounded-full blur-3xl"></div>
-
-                        <div className="relative z-10">
-                            <h2 className="text-5xl md:text-7xl font-black text-white mb-10 tracking-tighter leading-[0.9]">{about.cta}</h2>
-                            <p className="text-xl md:text-2xl text-gray-400 mb-16 max-w-2xl mx-auto leading-relaxed font-medium">
-                                {about.ctaText}
-                            </p>
-                            <Link href="/contact" className="btn btn-primary !px-16 !py-6 !text-[14px] !tracking-[0.2em] !font-black !rounded-2xl shadow-2xl shadow-emerald-500/40 transform hover:scale-105 transition-all">
-                                START YOUR PROJECT &mdash; NOW
-                            </Link>
-                        </div>
-                    </motion.div>
+                        Schedule Briefing ↗
+                    </Link>
                 </div>
-            </section>
+            </div>
         </div>
     );
 }

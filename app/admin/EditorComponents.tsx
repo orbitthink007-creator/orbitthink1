@@ -1,12 +1,10 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// --- Primitive Inputs ---
-
-const Label = ({ label }: { label: string }) => (
-    <label className="block text-xs uppercase tracking-wider text-[var(--accent-primary)] mb-2 font-bold">
+export const Label = ({ label }: { label: string }) => (
+    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#00CD58] mb-2 font-black font-mono">
         {label.replace(/([A-Z])/g, ' $1').trim()}
     </label>
 );
@@ -19,7 +17,7 @@ export const TextInput = ({ label, value, onChange }: { label: string, value: st
                 type="text"
                 value={value || ''}
                 onChange={(e) => onChange(e.target.value)}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] focus:bg-white focus:border-[var(--accent-primary)] focus:ring-4 focus:ring-[var(--accent-primary)]/10 outline-none transition-all"
+                className="w-full bg-[#0d0d0f] border border-white/10 rounded-2xl px-5 py-3.5 text-sm text-white focus:bg-[#141417] focus:border-[#00CD58] outline-none transition-all font-light"
             />
         </div>
     );
@@ -33,7 +31,7 @@ export const TextArea = ({ label, value, onChange }: { label: string, value: str
                 value={value || ''}
                 onChange={(e) => onChange(e.target.value)}
                 rows={4}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] focus:bg-white focus:border-[var(--accent-primary)] focus:ring-4 focus:ring-[var(--accent-primary)]/10 outline-none transition-all resize-y"
+                className="w-full bg-[#0d0d0f] border border-white/10 rounded-2xl px-5 py-3.5 text-sm text-white focus:bg-[#141417] focus:border-[#00CD58] outline-none transition-all font-light resize-y"
             />
         </div>
     );
@@ -45,24 +43,22 @@ export const ColorInput = ({ label, value, onChange }: { label: string, value: s
             <Label label={label} />
             <div className="flex gap-3 items-center">
                 <div
-                    className="w-10 h-10 rounded-xl border border-gray-200 shadow-inner"
-                    style={{ background: value }}
+                    className="w-11 h-11 rounded-xl border border-white/20 shadow-inner shrink-0"
+                    style={{ background: value || '#00CD58' }}
                 />
                 <input
                     type="text"
                     value={value || ''}
                     onChange={(e) => onChange(e.target.value)}
-                    className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] focus:bg-white focus:border-[var(--accent-primary)] focus:outline-none transition-all"
+                    className="flex-1 bg-[#0d0d0f] border border-white/10 rounded-2xl px-5 py-3.5 text-sm text-white focus:border-[#00CD58] outline-none transition-all font-mono"
                 />
             </div>
         </div>
     );
 };
 
-// --- Complex Editors ---
-
 export const ArrayEditor = ({ label, value, onChange }: { label: string, value: any[], onChange: (val: any[]) => void }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(true);
 
     const addItem = () => {
         const template = value.length > 0 ? JSON.parse(JSON.stringify(value[0])) : "";
@@ -84,10 +80,16 @@ export const ArrayEditor = ({ label, value, onChange }: { label: string, value: 
     };
 
     return (
-        <div className="mb-6 border border-gray-100 rounded-2xl p-6 bg-gray-50/50">
-            <div className="flex justify-between items-center mb-4 cursor-pointer group" onClick={() => setIsExpanded(!isExpanded)}>
-                <Label label={`${label} (${value.length})`} />
-                <span className="text-[var(--accent-primary)] bg-white w-8 h-8 rounded-full flex items-center justify-center border border-gray-100 shadow-sm group-hover:scale-110 transition-transform">
+        <div className="mb-6 border border-white/10 rounded-3xl p-6 bg-[#09090b]">
+            <div 
+                className="flex justify-between items-center mb-4 cursor-pointer group select-none" 
+                onClick={() => setIsExpanded(!isExpanded)}
+            >
+                <div className="flex items-center gap-3">
+                    <Label label={`${label} (${value.length})`} />
+                    <span className="text-[10px] uppercase tracking-wider text-[#71717a] font-mono">List collection</span>
+                </div>
+                <span className="text-[#00CD58] bg-white/[0.05] border border-white/10 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm group-hover:scale-110 transition-transform">
                     {isExpanded ? '−' : '+'}
                 </span>
             </div>
@@ -100,23 +102,30 @@ export const ArrayEditor = ({ label, value, onChange }: { label: string, value: 
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden"
                     >
-                        <div className="flex flex-col gap-6 mt-4">
+                        <div className="flex flex-col gap-5 mt-4">
                             {value.map((item, i) => (
-                                <div key={i} className="relative pl-6 border-l-4 border-[var(--accent-primary)]/20 bg-white p-6 rounded-r-2xl shadow-sm">
-                                    <button
-                                        onClick={() => removeItem(i)}
-                                        className="absolute right-4 top-4 text-red-500 hover:text-red-700 text-xs font-bold uppercase tracking-widest px-2 py-1"
-                                    >
-                                        Remove
-                                    </button>
+                                <div key={i} className="relative p-6 bg-[#141417] border border-white/10 rounded-2xl">
+                                    <div className="flex justify-between items-center mb-4 pb-3 border-b border-white/10">
+                                        <span className="text-xs font-mono font-bold text-[#00CD58]">
+                                            Item #{i + 1}
+                                        </span>
+                                        <button
+                                            type="button"
+                                            onClick={() => removeItem(i)}
+                                            className="text-red-400 hover:text-red-300 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded bg-red-500/10 hover:bg-red-500/20 transition-colors"
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
                                     <ObjectEditor value={item} onChange={(v) => updateItem(i, v)} />
                                 </div>
                             ))}
                             <button
+                                type="button"
                                 onClick={addItem}
-                                className="w-full py-4 border-2 border-dashed border-gray-200 text-gray-400 hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/30 hover:bg-[var(--accent-primary)]/5 rounded-2xl transition-all text-sm font-bold uppercase tracking-widest"
+                                className="w-full py-4 border border-dashed border-white/20 text-[#a1a1aa] hover:text-[#00CD58] hover:border-[#00CD58]/50 hover:bg-[#00CD58]/5 rounded-2xl transition-all text-xs font-bold uppercase tracking-[0.2em]"
                             >
-                                + Add {label} Item
+                                + Append New {label} Item
                             </button>
                         </div>
                     </motion.div>
@@ -134,38 +143,34 @@ export const ObjectEditor = ({ value, onChange }: { value: any, onChange: (val: 
     }
 
     if (Array.isArray(value)) {
-        return <ArrayEditor label="List" value={value} onChange={onChange} />;
+        return <ArrayEditor label="Items" value={value} onChange={onChange} />;
     }
 
     if (typeof value === 'object' && value !== null) {
         return (
-            <div className="space-y-2">
+            <div className="space-y-3">
                 {Object.keys(value).map((key) => {
                     const childVal = value[key];
                     const updateChild = (newVal: any) => {
                         onChange({ ...value, [key]: newVal });
                     };
 
-                    // Detect specific field types by key name
                     const isColor = key.toLowerCase().includes('color') || key.toLowerCase().includes('gradient') || key.toLowerCase().includes('bg');
-                    const isLongText = key.toLowerCase().includes('description') || key.toLowerCase().includes('text') || key.toLowerCase().includes('content');
+                    const isLongText = key.toLowerCase().includes('description') || key.toLowerCase().includes('text') || key.toLowerCase().includes('content') || key.toLowerCase().includes('desc');
 
-                    // If simple type
                     if (typeof childVal === 'string' || typeof childVal === 'number') {
                         if (isColor) return <ColorInput key={key} label={key} value={String(childVal)} onChange={updateChild} />;
                         if (isLongText) return <TextArea key={key} label={key} value={String(childVal)} onChange={updateChild} />;
                         return <TextInput key={key} label={key} value={String(childVal)} onChange={updateChild} />;
                     }
 
-                    // If Array
                     if (Array.isArray(childVal)) {
                         return <ArrayEditor key={key} label={key} value={childVal} onChange={updateChild} />;
                     }
 
-                    // If Object (nested)
-                    if (typeof childVal === 'object') {
+                    if (typeof childVal === 'object' && childVal !== null) {
                         return (
-                            <div key={key} className="pl-4 border-l border-white/10 my-4">
+                            <div key={key} className="p-5 rounded-2xl bg-[#0d0d0f] border border-white/10 my-3">
                                 <Label label={key} />
                                 <ObjectEditor value={childVal} onChange={updateChild} />
                             </div>
@@ -178,5 +183,5 @@ export const ObjectEditor = ({ value, onChange }: { value: any, onChange: (val: 
         );
     }
 
-    return <div>Unsupported Type</div>;
+    return <div className="text-xs text-[#71717a] font-mono">Unsupported Data Node</div>;
 };

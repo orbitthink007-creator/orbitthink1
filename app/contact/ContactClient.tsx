@@ -1,39 +1,46 @@
-'use client';
+﻿'use client';
 
 import ContactForm from '@/components/ContactForm';
-import { motion } from 'framer-motion';
 
-export default function ContactClient({ content }: { content: any }) {
-    const contactPage = content?.contactPage || { tag: "Get In Touch", title: "Start Your", titleAccent: "Transformation" };
-
+export default function ContactClient({ content }: { content?: any }) {
     return (
-        <div className="bg-[var(--bg-void)]">
-            <section className="relative min-h-[50vh] flex items-center pt-48 pb-20 overflow-hidden">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-emerald-500/5 rounded-full blur-[120px] -z-10 shadow-2xl shadow-emerald-500/10"></div>
-                <div className="container relative z-10 text-center max-w-5xl">
-                    <motion.span
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="inline-block px-5 py-2 rounded-full border border-[var(--accent-primary)] text-[var(--accent-primary)] text-[11px] font-black mb-10 bg-[var(--accent-primary)]/5 uppercase tracking-[0.2em]"
-                    >
-                        {contactPage.tag}
-                    </motion.span>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-6xl md:text-9xl font-extrabold mb-10 text-[var(--text-primary)] tracking-tighter leading-[0.8]"
-                    >
-                        {contactPage.title}<span className="text-[var(--accent-primary)] block mt-4">{contactPage.titleAccent}</span>
-                    </motion.h1>
-                </div>
-            </section>
+        <div className="bg-[#09090b] text-white min-h-screen pt-36 pb-28 px-6 md:px-14">
+            <div className="max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                    <div className="lg:col-span-5">
+                        <span className="flex items-center gap-3 text-[10px] font-black tracking-[0.3em] uppercase text-[#00CD58] mb-4">
+                            <span className="w-6 h-px bg-[#00CD58]" />
+                            INITIATE CONTACT
+                        </span>
+                        <h1 className="text-[clamp(44px,6.5vw,84px)] font-black tracking-[-0.04em] leading-[0.92] uppercase mb-8">
+                            Let's Build <br />
+                            <span className="text-[#00CD58]">Your Engine.</span>
+                        </h1>
+                        <p className="text-base text-[#a1a1aa] font-light leading-relaxed mb-8">
+                            Whether you need a full-scale AI agent system, an Oculus VR prototype, or a high-throughput Next.js application, our technical leads are ready to architect your solution.
+                        </p>
 
-            <section className="section pb-48">
-                <div className="container px-6 md:px-8 max-w-5xl">
-                    <ContactForm />
+                        <div className="p-8 rounded-3xl bg-[#141417] border border-white/10 flex flex-col gap-4">
+                            <div>
+                                <span className="text-[10px] font-mono tracking-widest uppercase text-[#71717a] block mb-1">DIRECT INQUIRIES</span>
+                                <a href="mailto:contact@orbitthink.com" className="text-sm font-mono text-[#00CD58] hover:underline">
+                                    contact@orbitthink.com
+                                </a>
+                            </div>
+                            <div className="pt-4 border-t border-white/10">
+                                <span className="text-[10px] font-mono tracking-widest uppercase text-[#71717a] block mb-1">WHATSAPP LINE</span>
+                                <a href="https://wa.me/923394054520" className="text-sm font-mono text-white/90 hover:text-[#00CD58]">
+                                    +92 339 4054520
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="lg:col-span-7">
+                        <ContactForm />
+                    </div>
                 </div>
-            </section>
+            </div>
         </div>
     );
 }

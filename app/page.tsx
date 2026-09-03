@@ -1,11 +1,11 @@
-import Hero from "@/components/Hero";
+﻿import Hero from "@/components/Hero";
+import MarqueeTicker from "@/components/MarqueeTicker";
+import Philosophy from "@/components/Philosophy";
 import Services from "@/components/Services";
 import Process from "@/components/Process";
 import Portfolio from "@/components/Portfolio";
 import AboutSection from "@/components/AboutSection";
 import Testimonials from "@/components/Testimonials";
-import Pricing from "@/components/Pricing";
-import Subscribe from "@/components/Subscribe";
 import { getDynamicContent } from "@/lib/data";
 
 export default async function Home() {
@@ -13,14 +13,14 @@ export default async function Home() {
 
   return (
     <>
-      <Hero content={content.hero} />
-      <Services content={content.services} />
-      <AboutSection content={content.about} />
-      <Process content={content.process} />
-      <Portfolio content={content.portfolio} />
-      <Pricing />
-      <Testimonials />
-      <Subscribe />
+      <Hero content={content?.hero} />
+      <MarqueeTicker />
+      <Philosophy content={content?.philosophy} />
+      <Services content={content?.services} />
+      <Portfolio content={content?.portfolio} />
+      <Process content={content?.process} />
+      <AboutSection content={content?.about} />
+      <Testimonials content={content?.testimonials} />
     </>
   );
 }

@@ -1,131 +1,153 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function Navbar({ content }: { content: any }) {
+export default function Navbar({ content }: { content?: any }) {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    // Fallback protection
-    const navContent = content || {
-        logo: { text: "Orbit", accent: "Think" }, links: [
-            { label: "Home", href: "/" },
-            { label: "Services", href: "/services" },
-            { label: "Process", href: "/#process" }, // Keeping anchor for homepage scroll
-            { label: "Portfolio", href: "/portfolio" },
-            { label: "About", href: "/about" },
-            { label: "Contact", href: "/contact" }
-        ], cta: { label: "Get Started", href: "#" }
-    };
+    const navLinks = content?.links || [
+        { label: "Home", href: "/" },
+        { label: "Services", href: "/#services" },
+        { label: "Philosophy", href: "/#philosophy" },
+        { label: "Work", href: "/#work" },
+        { label: "About", href: "/about" },
+        { label: "Contact", href: "/contact" }
+    ];
+
+    const cta = content?.cta || { label: "Let's Talk", href: "/contact" };
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
+            setScrolled(window.scrollY > 40);
         };
-
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        if (href.startsWith('/#')) {
-            e.preventDefault();
-            const id = href.replace('/#', '');
-            if (window.location.pathname !== '/') {
-                window.location.href = href;
+    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href.startsWith('/#') || href.startsWith('#')) {
+            const targetId = href.replace(/^\/?#/, '');
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                setMobileMenuOpen(false);
+                if ((window as any).lenis) {
+                    (window as any).lenis.scrollTo(targetElement, { offset: -60, duration: 1.2 });
+                } else {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
                 return;
             }
-            const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-                setMobileMenuOpen(false);
-            }
-        } else {
-            setMobileMenuOpen(false);
         }
+        setMobileMenuOpen(false);
     };
 
     return (
-        <header className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 ${scrolled ? 'py-4 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm' : 'py-8 bg-transparent'}`}>
-            <div className="container mx-auto px-6 md:px-8 flex items-center justify-between">
-                <div className="flex-shrink-0 z-10">
-                    <Link href="/" className="font-heading text-2xl font-extrabold tracking-tighter text-[var(--text-primary)] flex items-center">
-                        {navContent.logo.text}<span className="text-[var(--accent-primary)]">{navContent.logo.accent}</span>
+        <header className="fixed top-0 left-0 right-0 z-[1000] pointer-events-none transition-all duration-300 px-4 md:px-10 py-5">
+            <div className="max-w-7xl mx-auto flex items-center justify-between">
+                {/* Brand Logo - White Company Logo PNG/SVG */}
+                <div className="pointer-events-auto">
+                    <Link href="/" className="flex items-center group transition-transform duration-300 hover:scale-[1.02]">
+                        <Image
+                            src="/images/orbitthink-logo-white.svg"
+                            alt="OrbitThink Logo"
+                            width={160}
+                            height={36}
+                            priority
+                            className="h-8 md:h-9 w-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
+                        />
                     </Link>
                 </div>
 
-                <nav className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <ul className="flex gap-10">
-                        {navContent.links && navContent.links.map((link: any, index: number) => (
-                            <li key={index}>
-                                <Link
-                                    href={link.href}
-                                    onClick={(e) => link.href.startsWith('/#') && handleScrollTo(e, link.href)}
-                                    className="text-[13px] uppercase tracking-widest font-bold text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-all relative group"
-                                >
-                                    {link.label}
-                                    <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[var(--accent-primary)] transition-all duration-300 group-hover:w-full"></span>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
+                {/* Floating Centered Pill Navigation (Lircle & Grigoletti Style) */}
+                <nav className={`pointer-events-auto hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full border transition-all duration-500 ${
+                    scrolled
+                        ? 'bg-[#141414]/90 border-white/15 shadow-[0_12px_45px_rgba(0,0,0,0.7)] backdrop-blur-xl scale-95'
+                        : 'bg-[#141414]/60 border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.4)] backdrop-blur-md'
+                }`}>
+                    {navLinks.map((link: any, index: number) => (
+                        <Link
+                            key={index}
+                            href={link.href}
+                            onClick={(e) => handleLinkClick(e, link.href)}
+                            className="text-[11px] uppercase tracking-[0.2em] font-extrabold text-[#999999] hover:text-[#00CD58] px-3.5 py-1.5 rounded-full transition-all duration-200 hover:bg-white/[0.05]"
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
                 </nav>
 
-                <div className="hidden md:flex flex-shrink-0 items-center gap-4 z-10">
-                    <Link href={navContent.cta.href} className="btn btn-primary !text-[12px] !font-bold !tracking-widest !py-3 !px-8 flex items-center gap-2">
-                        {navContent.cta.label}
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                {/* Right CTA / Menu Toggle */}
+                <div className="pointer-events-auto flex items-center gap-3">
+                    <Link
+                        href={cta.href}
+                        onClick={(e) => handleLinkClick(e, cta.href)}
+                        className="hidden sm:inline-flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.22em] px-5 py-2.5 rounded-full bg-[#00CD58] text-[#0d0d0d] transition-all duration-300 hover:bg-[#00e362] hover:shadow-[0_0_24px_rgba(0,205,88,0.45)] hover:-translate-y-0.5"
+                    >
+                        <span>{cta.label}</span>
+                        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
                     </Link>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        type="button"
+                        className="md:hidden flex items-center justify-center w-11 h-11 rounded-full bg-[#141414]/90 border border-white/15 text-white focus:outline-none backdrop-blur-lg"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria-label="Toggle Navigation Menu"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            {mobileMenuOpen ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M6 18L18 6M6 6l12 12" />
+                            ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M4 7h16M4 12h16M4 17h16" />
+                            )}
+                        </svg>
+                    </button>
                 </div>
-
-                <button
-                    className="md:hidden z-[1001] text-[var(--text-primary)] focus:outline-none"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                >
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        {mobileMenuOpen ? (
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        ) : (
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                        )}
-                    </svg>
-                </button>
-
-                <AnimatePresence>
-                    {mobileMenuOpen && (
-                        <motion.div
-                            initial={{ opacity: 0, x: '100%' }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: '100%' }}
-                            transition={{ type: "tween", duration: 0.3 }}
-                            className="fixed inset-0 bg-white z-[1000] flex flex-col items-center justify-center space-y-8 md:hidden"
-                        >
-                            <nav>
-                                <ul className="flex flex-col items-center gap-8">
-                                    {navContent.links && navContent.links.map((link: any, index: number) => (
-                                        <li key={index}>
-                                            {link.href.startsWith('/#') ? (
-                                                <a href={link.href} onClick={(e) => handleScrollTo(e, link.href)} className="text-xl font-bold text-[var(--text-primary)]">
-                                                    {link.label}
-                                                </a>
-                                            ) : (
-                                                <Link href={link.href} onClick={() => setMobileMenuOpen(false)} className="text-xl font-bold text-[var(--text-primary)]">
-                                                    {link.label}
-                                                </Link>
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </nav>
-                            <Link href={navContent.cta.href} onClick={() => setMobileMenuOpen(false)} className="btn btn-primary text-base px-10 py-4">
-                                {navContent.cta.label}
-                            </Link>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
             </div>
+
+            {/* Mobile Animated Dropdown Drawer */}
+            <AnimatePresence>
+                {mobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -20, scale: 0.98 }}
+                        transition={{ duration: 0.25, ease: "easeOut" }}
+                        className="pointer-events-auto md:hidden mt-4 mx-2 p-6 rounded-3xl bg-[#111113]/98 border border-white/15 shadow-[0_20px_70px_rgba(0,0,0,0.85)] backdrop-blur-2xl text-white"
+                    >
+                        <nav className="flex flex-col gap-2">
+                            {navLinks.map((link: any, index: number) => (
+                                <Link
+                                    key={index}
+                                    href={link.href}
+                                    onClick={(e) => handleLinkClick(e, link.href)}
+                                    className="flex items-center justify-between py-3 px-4 rounded-xl text-base font-extrabold tracking-tight text-white/90 hover:text-[#00CD58] hover:bg-white/[0.04] transition-all"
+                                >
+                                    <span>{link.label}</span>
+                                    <span className="text-xs text-[#00CD58] opacity-60">↗</span>
+                                </Link>
+                            ))}
+                        </nav>
+
+                        <div className="mt-6 pt-6 border-t border-white/10 flex flex-col gap-3">
+                            <Link
+                                href="/contact"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="w-full text-center py-3.5 rounded-2xl bg-[#00CD58] text-[#0a0a0a] text-xs font-black uppercase tracking-[0.2em]"
+                            >
+                                Start a Project
+                            </Link>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </header>
     );
 }

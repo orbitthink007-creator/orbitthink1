@@ -1,22 +1,20 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getDynamicContent } from "@/lib/data";
+import { Providers } from "./providers";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 
 export const metadata: Metadata = {
-  title: "OrbitThink | Future-Ready Software Solutions",
-  description: "Pioneering the AI Frontier with Generative AI, Deep Learning, and Neural Networks.",
+  title: "OrbitThink | Defying The Laws of Software",
+  description: "Independent engineering studio for enterprise AI, immersive 3D/VR, distributed web architectures, and mobile systems.",
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%2300f3ff'/></svg>"
+    icon: "/images/orbitthink-mark.svg"
   }
 };
 
-import { Providers } from "./providers";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
-
-// Layouts can be async in Next.js 14
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -25,14 +23,15 @@ export default async function RootLayout({
   const content = await getDynamicContent();
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
+    <html lang="en" className="dark bg-[#09090b]">
+      <body className="bg-[#09090b] text-white antialiased selection:bg-[#00CD58] selection:text-[#0a0a0a]">
         <Providers>
-          <ThemeToggle />
-          <WhatsAppButton heroContent={content.hero} />
-          <Navbar content={content.navbar} />
-          <main>{children}</main>
-          <Footer content={content.footer} />
+          <SmoothScrollProvider>
+            <WhatsAppButton heroContent={content?.hero} />
+            <Navbar content={content?.navbar} />
+            <main className="min-h-screen">{children}</main>
+            <Footer content={content?.footer} />
+          </SmoothScrollProvider>
         </Providers>
       </body>
     </html>
