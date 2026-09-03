@@ -1,6 +1,46 @@
 ﻿'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
+
+function AnimatedCounter({ value }: { value: string }) {
+    const ref = useRef<HTMLSpanElement>(null);
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+    // Parse the numerical portion and suffix/prefix (e.g., "100+", "99.9%", "4X", "24/7")
+    const match = value.match(/^([\d.]+)(.*)$/);
+    const targetNumber = match ? parseFloat(match[1]) : 0;
+    const suffix = match ? match[2] : "";
+    const isDecimal = match ? match[1].includes('.') : false;
+
+    const motionVal = useMotionValue(0);
+    const springVal = useSpring(motionVal, {
+        stiffness: 45,
+        damping: 18,
+        restDelta: 0.001
+    });
+
+    useEffect(() => {
+        if (isInView && match) {
+            motionVal.set(targetNumber);
+        }
+    }, [isInView, targetNumber, motionVal, match]);
+
+    useEffect(() => {
+        return springVal.on("change", (latest) => {
+            if (ref.current && match) {
+                const formatted = isDecimal ? latest.toFixed(1) : Math.floor(latest);
+                ref.current.textContent = `${formatted}${suffix}`;
+            }
+        });
+    }, [springVal, suffix, isDecimal, match]);
+
+    return (
+        <span ref={ref} className="text-3xl md:text-5xl font-black text-white tracking-tight">
+            {value}
+        </span>
+    );
+}
 
 export default function Philosophy({ content }: { content?: any }) {
     const defaultData = {
@@ -42,13 +82,11 @@ export default function Philosophy({ content }: { content?: any }) {
                     </p>
                 </motion.div>
 
-                {/* Metrics Row */}
+                {/* Micro Animated Counters Row */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 pt-12 border-t border-white/10">
                     {stats.map((item: any, idx: number) => (
                         <div key={idx}>
-                            <div className="text-3xl md:text-5xl font-black text-white tracking-tight">
-                                {item.value}
-                            </div>
+                            <AnimatedCounter value={item.value} />
                             <div className="text-[10px] font-bold tracking-[0.22em] uppercase text-[#71717a] mt-2">
                                 {item.label}
                             </div>

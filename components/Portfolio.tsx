@@ -1,7 +1,94 @@
 ﻿'use client';
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
+
+interface ProjectCardProps {
+    project: any;
+    index: number;
+    total: number;
+}
+
+function StackingProjectCard({ project, index, total }: ProjectCardProps) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const isLast = index === total - 1;
+
+    const { scrollYProgress } = useScroll({
+        target: cardRef,
+        offset: ['start start', 'end start'],
+    });
+
+    const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
+    const opacity = useTransform(scrollYProgress, [0, isLast ? 1 : 0.75], [1, isLast ? 1 : 0]);
+    const filter = useTransform(scrollYProgress, [0, 0.8], ['blur(0px)', isLast ? 'blur(0px)' : 'blur(8px)']);
+
+    return (
+        <div
+            ref={cardRef}
+            className="sticky top-28 md:top-36 mb-24 last:mb-0"
+            style={{
+                zIndex: index + 10,
+            }}
+        >
+            <motion.div
+                style={{ scale, opacity, filter }}
+                className="p-8 md:p-14 rounded-[2.5rem] bg-[#111114] border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.95)] backdrop-blur-2xl transition-all duration-300 group hover:border-[#00CD58]/50 will-change-transform"
+            >
+                <div className="flex flex-col lg:flex-row justify-between gap-8 items-start lg:items-center">
+                    <div className="max-w-2xl">
+                        <div className="flex items-center gap-4 mb-4">
+                            <span className="text-[10px] font-mono tracking-[0.22em] uppercase text-[#00CD58] px-3.5 py-1.5 rounded-full bg-[#00CD58]/10 border border-[#00CD58]/20">
+                                {project.category}
+                            </span>
+                            <span className="text-xs font-mono text-[#71717a]">
+                                {project.metrics}
+                            </span>
+                        </div>
+
+                        <h3 className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight text-white mb-4 group-hover:text-[#00CD58] transition-colors duration-300">
+                            {project.title}
+                        </h3>
+
+                        <p className="text-sm md:text-base text-[#a1a1aa] font-light leading-relaxed mb-6">
+                            {project.desc}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2">
+                            {project.tech?.map((t: string, ti: number) => (
+                                <span
+                                    key={ti}
+                                    className="text-[10px] font-bold uppercase tracking-wider text-white/60 bg-white/[0.04] border border-white/10 px-3 py-1 rounded-md"
+                                >
+                                    {t}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end justify-between gap-6 pt-6 lg:pt-0 border-t lg:border-t-0 border-white/10 w-full lg:w-auto shrink-0">
+                        <div className="text-left lg:text-right">
+                            <span className="text-[10px] font-mono tracking-widest text-[#71717a] uppercase block mb-1">
+                                Lead Architect
+                            </span>
+                            <span className="text-sm font-bold text-white font-mono">
+                                {project.lead}
+                            </span>
+                        </div>
+
+                        <Link
+                            href="/portfolio"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.05] border border-white/15 text-xs font-bold uppercase tracking-wider text-white group-hover:bg-[#00CD58] group-hover:text-[#0a0a0a] group-hover:border-[#00CD58] transition-all duration-300"
+                        >
+                            <span>Inspect Mission</span>
+                            <span className="text-sm">↗</span>
+                        </Link>
+                    </div>
+                </div>
+            </motion.div>
+        </div>
+    );
+}
 
 export default function Portfolio({ content }: { content?: any }) {
     const defaultProjects = [
@@ -39,14 +126,16 @@ export default function Portfolio({ content }: { content?: any }) {
         }
     ];
 
-    const projects = content?.projects?.length ? content.projects.map((p: any) => ({
-        title: p.title,
-        category: p.category || p.tag || "Production System",
-        lead: p.lead || "OrbitThink Team",
-        desc: p.description,
-        tech: p.tech || ["Next.js", "AI", "Cloud"],
-        metrics: "Production Ready"
-    })) : defaultProjects;
+    const projects = content?.projects?.length
+        ? content.projects.map((p: any) => ({
+              title: p.title,
+              category: p.category || p.tag || "Production System",
+              lead: p.lead || "OrbitThink Team",
+              desc: p.description,
+              tech: p.tech || ["Next.js", "AI", "Cloud"],
+              metrics: "Production Verified"
+          }))
+        : defaultProjects;
 
     return (
         <section id="work" className="py-28 md:py-40 px-6 md:px-14 bg-[#0d0d0f] text-white border-b border-white/10 relative">
@@ -62,63 +151,28 @@ export default function Portfolio({ content }: { content?: any }) {
                         </h2>
                     </div>
                     <p className="max-w-md text-sm md:text-base text-[#a1a1aa] font-light leading-relaxed">
-                        A curated archive of mission-critical systems deployed for startups and enterprise clients worldwide.
+                        Scroll through our flagship deployments. Each case study smoothly reveals the architectural execution.
                     </p>
                 </div>
 
-                {/* 2-Column High-End Editorial Project Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                {/* Stacking Project Cards Container */}
+                <div className="relative pb-16">
                     {projects.map((item: any, index: number) => (
-                        <motion.div
+                        <StackingProjectCard
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-80px" }}
-                            transition={{ duration: 0.7, delay: index * 0.1 }}
-                            className="group flex flex-col justify-between p-8 md:p-12 rounded-3xl bg-[#141417] border border-white/10 hover:border-[#00CD58]/50 transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
-                        >
-                            <div>
-                                <div className="flex items-center justify-between gap-4 mb-8">
-                                    <span className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#00CD58] px-3.5 py-1.5 rounded-full bg-[#00CD58]/10 border border-[#00CD58]/20">
-                                        {item.category}
-                                    </span>
-                                    <span className="text-xs font-mono text-[#71717a]">
-                                        {item.metrics}
-                                    </span>
-                                </div>
-
-                                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight mb-4 group-hover:text-[#00CD58] transition-colors duration-300">
-                                    {item.title}
-                                </h3>
-
-                                <p className="text-sm md:text-base text-[#a1a1aa] font-light leading-relaxed mb-8">
-                                    {item.desc}
-                                </p>
-                            </div>
-
-                            <div className="pt-8 border-t border-white/10 flex items-center justify-between">
-                                <div className="flex flex-wrap gap-2">
-                                    {item.tech?.slice(0, 3).map((t: string, ti: number) => (
-                                        <span key={ti} className="text-[10px] font-bold uppercase tracking-wider text-white/50 bg-white/[0.04] px-2.5 py-1 rounded-md">
-                                            {t}
-                                        </span>
-                                    ))}
-                                </div>
-                                <div className="text-xs font-mono text-[#71717a] flex items-center gap-2 group-hover:text-[#00CD58] transition-colors">
-                                    <span>Lead: {item.lead}</span>
-                                    <span>↗</span>
-                                </div>
-                            </div>
-                        </motion.div>
+                            project={item}
+                            index={index}
+                            total={projects.length}
+                        />
                     ))}
                 </div>
 
-                <div className="mt-16 text-center">
+                <div className="mt-12 text-center">
                     <Link
                         href="/portfolio"
                         className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white/[0.05] border border-white/15 text-xs font-black uppercase tracking-[0.2em] text-white hover:border-[#00CD58] hover:text-[#00CD58] transition-all duration-300"
                     >
-                        <span>View All Mission Logs</span>
+                        <span>Explore All Missions</span>
                         <span>→</span>
                     </Link>
                 </div>

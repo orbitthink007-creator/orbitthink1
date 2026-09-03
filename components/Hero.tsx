@@ -14,8 +14,8 @@ export default function Hero({ content }: { content?: any }) {
     };
 
     return (
-        <section id="home" className="relative min-h-[92vh] md:min-h-screen flex flex-col justify-end pb-16 md:pb-24 pt-36 md:pt-44 px-6 md:px-14 overflow-hidden bg-[#09090b]">
-            {/* Ambient Background Glow & Radial Gradients (Lircle / Grigoletti style) */}
+        <section id="home" className="sticky top-0 h-screen flex flex-col justify-center pb-16 md:pb-24 px-6 md:px-14 overflow-hidden bg-[#09090b] z-0">
+            {/* Ambient Background Glow & Radial Gradients */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute top-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#00CD58]/[0.07] blur-[140px]" />
                 <div className="absolute bottom-[-15%] left-[-15%] w-[50vw] h-[50vw] rounded-full bg-[#00CD58]/[0.05] blur-[160px]" />
@@ -28,37 +28,34 @@ export default function Hero({ content }: { content?: any }) {
                 />
             </div>
 
-            {/* Orbit Ambient Floating Rings */}
-            <div className="absolute top-1/2 right-[5%] -translate-y-1/2 w-[340px] md:w-[680px] h-[340px] md:h-[680px] pointer-events-none opacity-40 -z-0">
-                <div className="absolute inset-0 rounded-full border border-white/[0.04] animate-[spin_60s_linear_infinite]" />
-                <div className="absolute inset-8 rounded-full border border-[#00CD58]/[0.08] animate-[spin_40s_linear_infinite_reverse]" />
-                <div className="absolute inset-24 rounded-full border border-white/[0.03]" />
-                <div className="absolute top-12 left-1/2 w-2 h-2 rounded-full bg-[#00CD58] shadow-[0_0_15px_#00CD58]" />
+            {/* Orbit Ambient Animated Planetary Rings with revolving dots */}
+            <div className="absolute top-1/2 right-[5%] -translate-y-1/2 w-[340px] md:w-[680px] h-[340px] md:h-[680px] pointer-events-none">
+                {/* Outer Ring 1 with revolving white node */}
+                <div className="absolute inset-0 rounded-full border border-white/[0.06] animate-[spin_35s_linear_infinite]">
+                    <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white shadow-[0_0_18px_rgba(255,255,255,0.9)]" />
+                </div>
+
+                {/* Middle Ring 2 with revolving emerald node */}
+                <div className="absolute inset-16 md:inset-24 rounded-full border border-[#00CD58]/[0.15] animate-[spin_20s_linear_infinite_reverse]">
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#00CD58] shadow-[0_0_24px_#00CD58]" />
+                </div>
+
+                {/* Inner Ring 3 with fast small planetary spark */}
+                <div className="absolute inset-32 md:inset-48 rounded-full border border-white/[0.08] animate-[spin_12s_linear_infinite]">
+                    <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#00CD58] shadow-[0_0_14px_#00CD58]" />
+                </div>
+
+                {/* Central Luminous Star Core */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-[#00CD58] shadow-[0_0_35px_#00CD58] animate-pulse" />
             </div>
 
             <div className="relative z-10 max-w-6xl mx-auto w-full">
-                {/* Micro Category Badge */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="flex items-center gap-3 mb-8"
-                >
-                    <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-[#00CD58] text-[10px] md:text-[11px] font-extrabold uppercase tracking-[0.26em] backdrop-blur-sm">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#00CD58] animate-pulse" />
-                        {hero.tag || "DEFIYING THE LAWS OF SOFTWARE"}
-                    </span>
-                    <span className="hidden sm:inline-block text-[10px] uppercase tracking-[0.24em] text-white/30 font-bold">
-                        EST. 2024 / WORLDWIDE
-                    </span>
-                </motion.div>
-
-                {/* Massive Typographic Headline */}
+                {/* Massive Typographic Headline without excessive top space or tags */}
                 <motion.h1
                     initial={{ opacity: 0, y: 35 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-[clamp(44px,7.5vw,118px)] font-black leading-[0.92] tracking-[-0.04em] text-white uppercase mb-8"
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-[clamp(48px,8vw,128px)] font-black leading-[0.92] tracking-[-0.04em] text-white uppercase mb-8 mt-0"
                 >
                     Defying <span className="text-[#00CD58]">Gravity</span> <br />
                     With Code.
@@ -68,7 +65,7 @@ export default function Hero({ content }: { content?: any }) {
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
                     className="flex flex-col md:flex-row md:items-end justify-between gap-8 pt-4 border-t border-white/10"
                 >
                     <p className="max-w-xl text-[15px] md:text-lg text-[#a1a1aa] leading-relaxed font-light">
