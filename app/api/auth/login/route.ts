@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import User from '@/models/User';
 import bcrypt from 'bcryptjs';
@@ -12,11 +12,8 @@ export async function POST(req: Request) {
         const { username, password } = await req.json();
 
         // Check if user exists
-        const user = await User.findOne({ username });
+        const user: any = await User.findOne({ username: String(username) });
 
-        // If no user exists and it's the specific initial admin check
-        // Ideally we don't do this, but for "add user" request:
-        // verify password against hash
         if (!user) {
             return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
         }
