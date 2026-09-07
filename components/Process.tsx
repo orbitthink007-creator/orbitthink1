@@ -1,74 +1,23 @@
-﻿'use client';
+'use client';
 
 import { motion } from 'framer-motion';
 
+const defaults = [
+  ['01', 'Find the signal', 'We ask better questions, map the opportunity, and get honest about what will make the difference.'],
+  ['02', 'Make it tangible', 'We prototype the experience, pressure-test decisions, and build a system your team can stand behind.'],
+  ['03', 'Ship with care', 'We launch deliberately, measure what matters, and keep the product moving after it is in the world.'],
+];
+
 export default function Process({ content }: { content?: any }) {
-    const defaultSteps = [
-        {
-            number: "01",
-            title: "Architecture & Ignition",
-            description: "Deep audit of data workflows, technical risks, and architectural constraints to blueprint scalable systems."
-        },
-        {
-            number: "02",
-            title: "Neural & Core Engineering",
-            description: "Agile, milestone-driven development of custom models, frontend UI pipelines, and low-latency servers."
-        },
-        {
-            number: "03",
-            title: "Velocity & Deployment",
-            description: "CI/CD automated rollout, penetration testing, performance benchmarking, and global edge acceleration."
-        }
-    ];
-
-    const steps = content?.steps || defaultSteps;
-
-    return (
-        <section id="process" className="py-28 md:py-40 px-6 md:px-14 bg-[#09090b] text-white border-b border-white/10 relative overflow-hidden">
-            <div className="max-w-6xl mx-auto">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-20">
-                    <div>
-                        <span className="flex items-center gap-3 text-[10px] font-black tracking-[0.3em] uppercase text-[#00CD58] mb-4">
-                            <span className="w-6 h-px bg-[#00CD58]" />
-                            METHODOLOGY & EXECUTION
-                        </span>
-                        <h2 className="text-[clamp(36px,5.5vw,78px)] font-black tracking-[-0.04em] leading-[0.92] uppercase">
-                            Mission <span className="text-[#00CD58]">Trajectory.</span>
-                        </h2>
-                    </div>
-                    <p className="max-w-md text-sm md:text-base text-[#a1a1aa] font-light leading-relaxed">
-                        A rigorous 3-stage delivery framework engineered to eliminate technical debt and guarantee velocity.
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                    {steps.map((step: any, index: number) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.7, delay: index * 0.15 }}
-                            className="p-8 md:p-10 rounded-3xl bg-[#111113] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between min-h-[300px]"
-                        >
-                            <div>
-                                <span className="text-3xl md:text-4xl font-mono font-black text-[#00CD58] block mb-8">
-                                    {step.number || `0${index + 1}`}
-                                </span>
-                                <h3 className="text-xl md:text-2xl font-black tracking-tight mb-4 text-white">
-                                    {step.title}
-                                </h3>
-                                <p className="text-sm text-[#a1a1aa] font-light leading-relaxed">
-                                    {step.description}
-                                </p>
-                            </div>
-                            <div className="mt-8 pt-6 border-t border-white/10 text-[10px] font-mono tracking-widest text-[#71717a] uppercase">
-                                Stage // 0{index + 1}
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+  const steps = content?.steps?.length ? content.steps.slice(0, 3).map((step: any, index: number) => [String(index + 1).padStart(2, '0'), step.title, step.description]) : defaults;
+  return (
+    <section id="process" className="bg-[#1b79ff] px-5 py-24 text-[#171719] sm:px-8 md:py-32 lg:px-12">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="grid gap-10 border-b border-[#171719]/25 pb-14 lg:grid-cols-[.74fr_1fr] lg:items-end"><div><p className="text-[10px] font-bold uppercase tracking-[.2em]">How we work</p><h2 className="mt-3 text-[clamp(3.2rem,6.5vw,7rem)] font-semibold leading-[.85] tracking-[-.075em]">No theatre.<br /><span className="font-['Playfair_Display'] font-medium italic text-white">Just momentum.</span></h2></div><p className="max-w-md text-base leading-relaxed text-[#171719]/75">The process should make the work clearer, faster, and more useful—not add friction for its own sake.</p></div>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {steps.map((step: any, index: number) => <motion.article key={step[1]} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .1, duration: .55 }} className="group min-h-[300px] rounded-[1.8rem] border border-[#171719]/20 bg-[#f8f7f3] p-6 sm:p-7"><div className="flex items-start justify-between"><span className="font-mono text-xs text-[#6d5dfc]">{step[0]}</span><span className="grid h-8 w-8 place-items-center rounded-full bg-[#c9f44c] text-sm transition-transform group-hover:rotate-45">↗</span></div><div className="mt-20"><h3 className="text-3xl font-semibold leading-[.92] tracking-[-.06em]">{step[1]}</h3><p className="mt-4 text-sm leading-relaxed text-[#696968]">{step[2]}</p></div></motion.article>)}
+        </div>
+      </div>
+    </section>
+  );
 }

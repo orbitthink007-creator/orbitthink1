@@ -8,8 +8,8 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 
 export const metadata: Metadata = {
-  title: "OrbitThink | Defying The Laws of Software",
-  description: "Independent engineering studio for enterprise AI, immersive 3D/VR, distributed web architectures, and mobile systems.",
+  title: "OrbitThink | Digital products made to move",
+  description: "OrbitThink is an independent product and engineering studio for AI, web, mobile, and immersive experiences.",
   icons: {
     icon: "/images/orbitthink-mark.svg"
   }
@@ -23,8 +23,8 @@ export default async function RootLayout({
   const content = await getDynamicContent();
 
   return (
-    <html lang="en" className="dark bg-[#09090b]">
-      <body className="bg-[#09090b] text-white antialiased selection:bg-[#00CD58] selection:text-[#0a0a0a]">
+    <html lang="en">
+      <body className="bg-[#f8f7f3] text-[#171719] antialiased">
         <Providers>
           <SmoothScrollProvider>
             <WhatsAppButton heroContent={content?.hero} />

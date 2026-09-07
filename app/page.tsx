@@ -12,12 +12,12 @@ export default async function Home() {
   const content = await getDynamicContent();
 
   return (
-    <div className="relative">
-      {/* Sticky Hero: stays pinned to viewport while the content below glides up over it */}
+    <div className="relative bg-[#f8f7f3]">
+      {/* Sticky Hero: Pinned in place so the content below smoothly slides up over it */}
       <Hero content={content?.hero} />
 
-      {/* Foreground Content wrapper that smoothly travels upward over the Hero */}
-      <div className="relative z-10 bg-[#09090b] shadow-[0_-25px_60px_rgba(0,0,0,0.9)]">
+      {/* Foreground Content Stack that glides over the Hero with parallax depth */}
+      <div className="relative z-10 bg-[#f8f7f3] shadow-[0_-25px_60px_rgba(23,23,25,0.08)]">
         <MarqueeTicker />
         <Philosophy content={content?.philosophy} />
         <Services content={content?.services} />

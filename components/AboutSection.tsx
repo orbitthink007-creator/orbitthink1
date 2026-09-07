@@ -1,75 +1,19 @@
-﻿'use client';
+'use client';
 
 import { motion } from 'framer-motion';
 
+const notes = ['Curious by default', 'Senior where it counts', 'Built around the problem', 'Clear in the room'];
+
 export default function AboutSection({ content }: { content?: any }) {
-    const capabilities = [
-        {
-            title: "Enterprise AI & Cloud MLOps",
-            desc: "Full-cycle neural networks, RAG pipelines, and model quantization tailored for low latency on edge or cluster.",
-            tag: "MACHINE INTELLIGENCE"
-        },
-        {
-            title: "Real-time 3D & Spatial Engines",
-            desc: "Unity-native simulations, WebGL shaders, and high-fidelity virtual environments engineered for immersion.",
-            tag: "SPATIAL COMPUTING"
-        },
-        {
-            title: "Fault-Tolerant Web Platforms",
-            desc: "Next.js applications, micro-frontends, serverless APIs, and distributed databases architected for zero downtime.",
-            tag: "WEB ARCHITECTURE"
-        },
-        {
-            title: "Native & Mobile Systems",
-            desc: "Cross-platform mobile apps with Flutter and swift/kotlin bridges for seamless hardware integration.",
-            tag: "MOBILE SYSTEMS"
-        }
-    ];
-
-    return (
-        <section id="about" className="py-28 md:py-40 px-6 md:px-14 bg-[#0d0d0f] text-white border-b border-white/10 relative">
-            <div className="max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-                    <div className="lg:col-span-5">
-                        <span className="flex items-center gap-3 text-[10px] font-black tracking-[0.3em] uppercase text-[#00CD58] mb-4">
-                            <span className="w-6 h-px bg-[#00CD58]" />
-                            WHO WE ARE
-                        </span>
-                        <h2 className="text-[clamp(36px,5vw,68px)] font-black tracking-[-0.04em] leading-[0.92] uppercase mb-8">
-                            Engineered For <span className="text-[#00CD58]">Scale.</span>
-                        </h2>
-                        <p className="text-base text-[#a1a1aa] font-light leading-relaxed mb-6">
-                            OrbitThink is an independent engineering studio founded to build the next generation of software products. We don't do boilerplate templates or slow agency layers.
-                        </p>
-                        <p className="text-base text-[#a1a1aa] font-light leading-relaxed mb-8">
-                            Every system we release is bespoke, resilient, and optimized to give our clients an unfair competitive advantage.
-                        </p>
-                    </div>
-
-                    <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {capabilities.map((cap, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: i * 0.1 }}
-                                className="p-8 rounded-3xl bg-[#141417] border border-white/10 hover:border-[#00CD58]/30 transition-all duration-300"
-                            >
-                                <span className="text-[9px] font-mono font-bold tracking-[0.2em] uppercase text-[#00CD58] block mb-4">
-                                    {cap.tag}
-                                </span>
-                                <h3 className="text-xl font-bold tracking-tight mb-3 text-white">
-                                    {cap.title}
-                                </h3>
-                                <p className="text-xs md:text-sm text-[#a1a1aa] font-light leading-relaxed">
-                                    {cap.desc}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+  const intro = content?.missionText || 'OrbitThink is a close-knit engineering studio for teams who want to make a meaningful leap. We pair imagination with technical judgement, from the first rough concept to the details that make a product feel inevitable.';
+  return (
+    <section id="about" className="relative overflow-hidden bg-[#f8f7f3] px-5 py-24 sm:px-8 md:py-32 lg:px-12">
+      <div className="pointer-events-none absolute bottom-[-11rem] left-[-9rem] h-[27rem] w-[27rem] rounded-full bg-[#ff8066]/35 blur-3xl" />
+      <div className="relative mx-auto grid max-w-[1440px] gap-14 lg:grid-cols-[1.1fr_.9fr] lg:gap-24">
+        <div><p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#6d5dfc]">The studio</p><motion.h2 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .75 }} className="mt-3 max-w-4xl text-[clamp(3.3rem,7vw,7.5rem)] font-semibold leading-[.84] tracking-[-.075em]">The sweet spot between <span className="font-['Playfair_Display'] font-medium italic text-[#ff8066]">ambitious</span> and achievable.</motion.h2></div>
+        <div className="lg:pt-16"><p className="max-w-xl text-lg leading-relaxed text-[#555554]">{intro}</p><div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-[#171719]/15 pt-7">{notes.map((note, index) => <div key={note} className="flex items-center gap-3 text-sm font-medium"><span className={`grid h-7 w-7 place-items-center rounded-full text-xs ${index % 2 ? 'bg-[#9ee6dc]' : 'bg-[#c9f44c]'}`}>✦</span>{note}</div>)}</div></div>
+      </div>
+      <div className="relative mx-auto mt-20 grid max-w-[1440px] overflow-hidden rounded-[2.25rem] bg-[#171719] p-7 text-white sm:p-10 lg:grid-cols-[.55fr_.45fr] lg:p-14"><div><p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#9ee6dc]">Built for collaboration</p><h3 className="mt-5 max-w-xl text-[clamp(2.8rem,5vw,5.5rem)] font-semibold leading-[.88] tracking-[-.07em]">A small team for a <span className="font-['Playfair_Display'] font-medium italic text-[#c9f44c]">big move.</span></h3></div><div className="mt-12 grid content-end gap-5 lg:mt-0"><p className="max-w-md text-base leading-relaxed text-white/65">You work directly with the people shaping the work. That means quicker feedback, fewer lost details, and a partnership calibrated to your pace.</p><div className="flex items-center gap-3"><span className="h-3 w-3 rounded-full bg-[#c9f44c]" /><span className="font-mono text-[10px] uppercase tracking-[.15em] text-white/50">Remote team / worldwide reach</span></div></div><div className="absolute bottom-[-7rem] right-[-4rem] h-56 w-56 rounded-full border-[30px] border-[#6d5dfc] opacity-80" /></div>
+    </section>
+  );
 }
